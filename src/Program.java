@@ -1,8 +1,12 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import de.micromata.opengis.kml.v_2_2_0.*; //imported from API.
 
+/**
+ * @authors Arad Zekler, Dolev Hindy, Naor Dahan.
+ */
 public class Program {
 	final static String COMMA = ",";
 	final static String NEW_LINE_SEPARATOR = "\n";
@@ -49,7 +53,10 @@ public class Program {
 		}
 	}
 
-	// Writer function for CSV.
+	/**
+	 * Writer function for CSV.
+	 * @param temp       getting the parameter from csvFolderReader().
+	 */
 	public static void writeFile(String temp) {
 		final String FILE_HEADER = "Time, ID, Lat, Lon, Alt, SSID1, MAC1, Frequncy1, Signal1,"
 				+ " SSID2, MAC2, Frequncy2, Signal2," + " SSID3, MAC3, Frequncy3, Signal3,"
@@ -109,8 +116,7 @@ public class Program {
 			}
 		}
 	}
-
-	// get Model function. need to improve.
+	// Not useable yet.
 	private static String getMod(String path) {
 		// returning model, input path csv file;
 		try {
@@ -126,7 +132,12 @@ public class Program {
 		}
 	}
 
-	// printing rows into CSV file.
+	/**
+	 * Printing rows into CSV file.
+	 * @param max       Info Object containing column information.
+	 * @param count		Counter received from writeFile(String).
+	 * @param fileWriter Writer object received from writeFile(String).
+	 */
 	private static void print(Info[] max, int count, Writer fileWriter) {
 		// Writing to new CSV file.
 		try {
@@ -155,7 +166,7 @@ public class Program {
 		}
 	}
 
-	/* reader function for reading files from folder. Calling that function will read all files
+	/* Reader function for reading files from folder. Calling that function will read all files
 	 * in folders and turn them into 1 csv file.
 	 */
 	public void csvFolderReader() {
@@ -174,6 +185,9 @@ public class Program {
 				String temp = all_files[i].toString();
 				writeFile(temp);
 			}
+			else {
+				System.out.println("Wrong extension file found. Didn't read.");
+			}
 			i++;
 		}
 	}
@@ -183,28 +197,16 @@ public class Program {
 		try {
 			csvToArrayList();
 			Kml kml = KmlFactory.createKml(); // creating a new instance.
+			Document document = kml.createAndSetDocument().withName("Placemarks");
 
 			for (int i = 1; i < csvList.size(); i++) { // looping all elements in ArrayList.
 				String[] s = csvList.get(i);
 				// create <Placemark> and set values.
-				Placemark placemark = KmlFactory.createPlacemark();
-				placemark.setName(s[1]);
-				placemark.setVisibility(true);
-				placemark.setOpen(false);
-				placemark.setDescription(s[0]);
-				placemark.setStyleUrl("styles.kml#jugh_style");
-
-				// create <Point> and set values. <Point> is children class of <Placemark>.
-				Point point = KmlFactory.createPoint();
-				point.setExtrude(false);
-				point.setAltitudeMode(AltitudeMode.CLAMP_TO_GROUND);
-				point.addToCoordinates(Double.parseDouble(s[3]), Double.parseDouble(s[2]), Double.parseDouble(s[4])); // set
-				// coordinates
-
-				placemark.setGeometry(point); // binding <Point> to <Placemark>.
-				kml.setFeature(placemark); // setting <Placemark> in KML.
+				document.createAndAddPlacemark()
+				.withName(String.valueOf(s[1]))
+				.createAndSetPoint().addToCoordinates(Double.parseDouble(s[3]), Double.parseDouble(s[2]), Double.parseDouble(s[4]));
 			}
-			kml.marshal(new File("newKml.kml")); // create file.
+			kml.marshal(new File(sourceFolder + "\\newKml.kml")); // create file.
 			System.out.println("KML file writing was successful.");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -236,23 +238,20 @@ public class Program {
 	public static void main(String[] args) {
 		String sourcefile = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newfile.csv";
 		String source = "C:\\Users\\Arad Zekler\\Desktop\\test folder";
-		//csvFolderReader(source, destination);
-		//writeFileKML(csvToArrayList("C:\\Users\\Arad Zekler\\Desktop\\test folder\\newfile.csv"));
 
 		Program newfile = new Program(sourcefile, sourcefile, source, "");
 		newfile.csvFolderReader();
-		//newfile.writeFileKML();
+		newfile.writeFileKML();
 		/*
 		 * TODO 
 		 * -check if reader can take wrong inputs.
 		 *  -model parsing. -כל נתב )לפי ה
 		 * MAC שלו( יוצג לפי המיקום הכי "חזק שלו". meaning?? 
 		 * -junit testing. 
-		 * -upload project to github. 
 		 * -testing folder with working "walk around the campus" testing.
-		 *  -detailed readme file. -explanation file about the project.
+		 * -explanation file about the project.
 		 * -javadoc. 
-		 * -adding Timeline to kml.
+		 * timeline.
 		 */
 	}
 }
