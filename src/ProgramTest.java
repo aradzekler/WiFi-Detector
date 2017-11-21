@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 class ProgramTest {
 	String sourcefile = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newfile.csv";
 	String source = "C:\\Users\\Arad Zekler\\Desktop\\test folder";
-	
+	Program newfile = new Program(sourcefile, sourcefile, source, "");
+
 
 	@Test
 	void testProgram() { // Asserts if the 2 files were created in paths.
@@ -15,7 +16,7 @@ class ProgramTest {
 		Program newfile = new Program(sourcefile, sourcefile, source, "");
 		newfile.csvFolderReader();
 		newfile.writeFileKML();
-		
+
 		assertEquals(true, checkFileExist(sourcefile));
 		assertEquals(true, checkFileExist(kmlFilePath));
 	}
@@ -34,13 +35,19 @@ class ProgramTest {
 	}
 
 	@Test
-	void testCsvFolderReader() {
-		fail("Not yet implemented");
+	void testCsvFolderReader() { // Checks if CSV file was created.
+		newfile.csvFolderReader();
+		assertEquals(true, checkFileExist(sourcefile));
 	}
 
 	@Test
-	void testWriteFileKML() {
-		fail("Not yet implemented");
+	void testWriteFileKML() { // Checks if KML file was created.
+		String kmlFilePath = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newKml.kml"; 
+		Program newfile = new Program(sourcefile, sourcefile, source, "");
+		newfile.csvFolderReader();
+		newfile.writeFileKML();
+
+		assertEquals(true, checkFileExist(kmlFilePath));
 	}
 
 }
