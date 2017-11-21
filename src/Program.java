@@ -234,24 +234,4 @@ public class Program {
 
 		Program.csvList = csvList;
 	}
-
-	public static void main(String[] args) {
-		String sourcefile = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newfile.csv";
-		String source = "C:\\Users\\Arad Zekler\\Desktop\\test folder";
-
-		Program newfile = new Program(sourcefile, sourcefile, source, "");
-		newfile.csvFolderReader();
-		newfile.writeFileKML();
-		/*
-		 * TODO 
-		 * -check if reader can take wrong inputs.
-		 *  -model parsing. -כל נתב )לפי ה
-		 * MAC שלו( יוצג לפי המיקום הכי "חזק שלו". meaning?? 
-		 * -junit testing. 
-		 * -testing folder with working "walk around the campus" testing.
-		 * -explanation file about the project.
-		 * -javadoc. 
-		 * timeline.
-		 */
-	}
 }
