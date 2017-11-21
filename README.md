@@ -1,6 +1,6 @@
 # ubiquitous-tribble
 
-A simple CSV folder reader that converts all CSV and txt files containing
+A simple CSV folder reader that converts all CSV and TXT files containing
 WiFi networks information inside a specific folder to a KML file, built in Java.
 
 
