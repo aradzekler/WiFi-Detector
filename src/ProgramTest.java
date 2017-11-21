@@ -1,19 +1,17 @@
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.File;
-
 import org.junit.jupiter.api.Test;
 
 class ProgramTest {
 	String sourcefile = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newfile.csv";
 	String source = "C:\\Users\\Arad Zekler\\Desktop\\test folder";
-	Program newfile = new Program(sourcefile, sourcefile, source, "");
+	Program newfile = new Program(sourcefile, source);
 
 
 	@Test
 	void testProgram() { // Asserts if the 2 files were created in paths.
 		String kmlFilePath = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newKml.kml";
-		Program newfile = new Program(sourcefile, sourcefile, source, "");
+		Program newfile = new Program(sourcefile, source);
 		newfile.csvFolderReader();
 		newfile.writeFileKML();
 
@@ -43,7 +41,7 @@ class ProgramTest {
 	@Test
 	void testWriteFileKML() { // Checks if KML file was created.
 		String kmlFilePath = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newKml.kml"; 
-		Program newfile = new Program(sourcefile, sourcefile, source, "");
+		Program newfile = new Program(sourcefile, source);
 		newfile.csvFolderReader();
 		newfile.writeFileKML();
 
