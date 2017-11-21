@@ -9,7 +9,7 @@ WiFi networks information inside a specific folder to a KML file, built in Java.
 
  ## Instructions:
 0. Import JAK KML API from here: [JAK Github Page](https://github.com/micromata/javaapiforkml) , 
-or use included JAR files (same API).
+or use included JAR files (same API) found in Javaapiforkml-master folder.
 1. Create a new Program object with paramaters.
 2. Invoke yourFile.csvFolderReader(); to read from destination folder and write a new 
 CSV file that includes top ten strongest networks.
