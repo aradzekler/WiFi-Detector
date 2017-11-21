@@ -11,20 +11,14 @@ public class Program {
 	final static String COMMA = ",";
 	final static String NEW_LINE_SEPARATOR = "\n";
 
-	private static String sourceFile = "";
 	private static String sourceFolder = "";
 	private static String destinationFile = "";
-	private static String destinationFolder = "";
-
 	private static ArrayList<String[]> csvList;
 
-
 	// Constructor.
-	public Program(String sourceFile, String destinationFile, String sourceFolder, String destinationFolder) {
-		Program.sourceFile = sourceFile;
+	public Program(String destinationFile, String sourceFolder) {
 		Program.destinationFile = destinationFile;
 		Program.sourceFolder = sourceFolder;
-		Program.destinationFolder = destinationFolder;
 	}
 
 	// helping class to store information.
@@ -85,7 +79,7 @@ public class Program {
 						count = 0;
 					}
 					int i = 0;
-					// sort by signal every row.
+					// sort every row by signal.
 					while (i < count && Integer.parseInt(max[i].signal) > Integer.parseInt(info.signal)) {
 						++i;
 					}
@@ -215,11 +209,10 @@ public class Program {
 
 	// Converting CSV file to an ArrayList. used by writeFileKML().
 	private void csvToArrayList() {
-		// Reads CSV file from string input, than transfers all information to
-		// ArrayList.
+		// Reads CSV file from string input, than transfers all information to ArrayList.
 		ArrayList<String[]> csvList = new ArrayList<String[]>();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File(sourceFile)));
+			BufferedReader br = new BufferedReader(new FileReader(new File(destinationFile)));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] entries = line.split(COMMA);
@@ -231,7 +224,5 @@ public class Program {
 			System.out.println("CSV Reader Error.");
 			e.printStackTrace();
 		}
-
 		Program.csvList = csvList;
 	}
-}
