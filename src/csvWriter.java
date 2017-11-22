@@ -11,8 +11,8 @@ public class csvWriter {
 
 	private static String sourceFolder = "";
 	private static String destinationFile = "";
-	private static ArrayList<String[]> csvList;
 
+	// Getters & setters
 	public static String getDestinationFile() {
 		return destinationFile;
 	}
@@ -69,38 +69,37 @@ public class csvWriter {
 	private static void writeFile(String path, FileWriter fileWriter) {
 		String line = "";
 
-		try {
-			try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-				br.readLine(); 
-				br.readLine();// reading 2 lines to avoid headers.
-				Info[] max = new Info[10];
-				int count = 0;
-				while ((line = br.readLine()) != null) {
-					String[] column = line.split(COMMA);
-					Info info = new Info(column);
-					// sort by time first
-					if (count > 0 && !max[0].time.equals(info.time)) {
-						print(max, count, fileWriter);
-						count = 0;
-					}
-					int i = 0;
-					// sort every row by signal.
-					while (i < count && Integer.parseInt(max[i].signal) > Integer.parseInt(info.signal)) {
-						++i;
-					}
-					while (i < count) {
-						Info pred = max[i];
-						max[i] = info;
-						info = pred;
-						++i;
-					}
-					if (count < max.length) {
-						max[count++] = info;
-					}
-				}
-				if (count > 0) {
+		try { 
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			br.readLine(); 
+			br.readLine();// reading 2 lines to avoid headers.
+			Info[] max = new Info[10];
+			int count = 0;
+			while ((line = br.readLine()) != null) {
+				String[] column = line.split(COMMA);
+				Info info = new Info(column);
+				// sort by time first
+				if (count > 0 && !max[0].time.equals(info.time)) {
 					print(max, count, fileWriter);
+					count = 0;
 				}
+				int i = 0;
+				// sort every row by signal.
+				while (i < count && Integer.parseInt(max[i].signal) > Integer.parseInt(info.signal)) {
+					++i;
+				}
+				while (i < count) {
+					Info pred = max[i];
+					max[i] = info;
+					info = pred;
+					++i;
+				}
+				if (count < max.length) {
+					max[count++] = info;
+				}
+			}
+			if (count > 0) {
+				print(max, count, fileWriter);
 			}
 			System.out.println("CSV file read was successful.");
 		} catch (Exception e) {
@@ -208,11 +207,4 @@ public class csvWriter {
 			e.printStackTrace();
 		}		
 	}
-	/*
-	 * TODO 
-	 * -check if reader can take wrong input rows.
-	 *  -model parsing. -כל נתב )לפי ה
-	 * MAC שלו( יוצג לפי המיקום הכי "חזק שלו". meaning?? 
-	 * -junit testing. 
-	 */
 }
