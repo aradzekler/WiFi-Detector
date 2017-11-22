@@ -5,7 +5,7 @@ import de.micromata.opengis.kml.v_2_2_0.*; //imported from API.
 /**
  * @authors Arad Zekler, Dolev Hindy, Naor Dahan.
  */
-public class Program {
+public class csvWriter {
 	final static String COMMA = ",";
 	final static String NEW_LINE_SEPARATOR = "\n";
 
@@ -13,14 +13,27 @@ public class Program {
 	private static String destinationFile = "";
 	private static ArrayList<String[]> csvList;
 
+	public static String getDestinationFile() {
+		return destinationFile;
+	}
+	public static void setDestinationFile(String destinationFile) {
+		csvWriter.destinationFile = destinationFile;
+	}
+	public static String getSourceFolder() {
+		return sourceFolder;
+	}
+	public static void setSourceFolder(String sourceFolder) {
+		csvWriter.sourceFolder = sourceFolder;
+	}
+
 	/**
 	 * Constructor.
 	 * @param sourceFolder source folder to read files from.
 	 * @param destinationFile destination csv file.
 	 */
-	public Program(String sourceFolder, String destinationFile) {
-		Program.destinationFile = destinationFile;
-		Program.sourceFolder = sourceFolder;
+	public csvWriter(String sourceFolder, String destinationFile) {
+		csvWriter.setDestinationFile(destinationFile);
+		csvWriter.setSourceFolder(sourceFolder);
 	}
 
 	// helping class to store information.
@@ -148,7 +161,7 @@ public class Program {
 	 * in folders and turn them into 1 csv file.
 	 */
 	private boolean csvFolderReader(FileWriter fileWriter) {
-		File Location = new File(sourceFolder); //folder path name
+		File Location = new File(getSourceFolder()); //folder path name
 		File[] all_files = Location.listFiles();
 		int i = 0;
 
@@ -183,60 +196,23 @@ public class Program {
 		String line = "";
 		boolean flag = true;
 
-			try {
-				fileWriter = new FileWriter(destinationFile); 
-				fileWriter.append(FILE_HEADER.toString()); // Write the CSV file header
-				fileWriter.append(NEW_LINE_SEPARATOR);
-				while(flag) {
-					flag = csvFolderReader(fileWriter);
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-	}
-	// CSV to KML function using JAK API.
-	public void writeFileKML() {
 		try {
-			csvToArrayList(destinationFile);
-			Kml kml = KmlFactory.createKml(); // creating a new instance.
-			Document document = kml.createAndSetDocument().withName("Placemarks");
-
-			for (int i = 1; i < csvList.size(); i++) { // looping all elements in ArrayList.
-				String[] s = csvList.get(i);
-				String timeStampSimpleExtension = s[0];
-				// create <Placemark> and set points and values.
-				Placemark placemark = KmlFactory.createPlacemark();
-				placemark.createAndSetTimeStamp().addToTimeStampSimpleExtension(timeStampSimpleExtension);
-				document.createAndAddPlacemark().withName("Placemark" + i).withOpen(Boolean.TRUE)
-				.withTimePrimitive(placemark.getTimePrimitive()).createAndSetPoint()
-				.addToCoordinates(Double.parseDouble(s[3]), Double.parseDouble(s[2]), Double.parseDouble(s[4]));
+			fileWriter = new FileWriter(getDestinationFile()); 
+			fileWriter.append(FILE_HEADER.toString()); // Write the CSV file header
+			fileWriter.append(NEW_LINE_SEPARATOR);
+			while(flag) {
+				flag = csvFolderReader(fileWriter);
 			}
-			kml.marshal(new File(sourceFolder + "\\newKml.kml")); // create file.
-			System.out.println("KML file writing was successful.");
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}		
 	}
-
-	// Converting CSV file to an ArrayList. used by writeFileKML().
-	private void csvToArrayList(String path) {
-		// Reads CSV file from string input, than transfers all information to ArrayList.
-		ArrayList<String[]> csvList = new ArrayList<String[]>();
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File(path)));
-			String line;
-			while ((line = br.readLine()) != null) {
-				String[] entries = line.split(COMMA);
-				csvList.add(entries);
-			}
-			br.close();
-			System.out.println("CSV successfully converted to an ArrayList");
-		} catch (IOException e) {
-			System.out.println("CSV Reader Error.");
-			e.printStackTrace();
-		}
-		Program.csvList = csvList;
-	}
+	/*
+	 * TODO 
+	 * -check if reader can take wrong input rows.
+	 *  -model parsing. -כל נתב )לפי ה
+	 * MAC שלו( יוצג לפי המיקום הכי "חזק שלו". meaning?? 
+	 * -junit testing. 
+	 */
 }
