@@ -15,7 +15,11 @@ public class Program {
 	private static String destinationFile = "";
 	private static ArrayList<String[]> csvList;
 
-	// Constructor.
+	/**
+	 * Constructor.
+	 * @param sourceFolder source folder to read files from.
+	 * @param destinationFile destination csv file.
+	 */
 	public Program(String destinationFile, String sourceFolder) {
 		Program.destinationFile = destinationFile;
 		Program.sourceFolder = sourceFolder;
