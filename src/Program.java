@@ -195,10 +195,13 @@ public class Program {
 
 			for (int i = 1; i < csvList.size(); i++) { // looping all elements in ArrayList.
 				String[] s = csvList.get(i);
-				// create <Placemark> and set values.
-				document.createAndAddPlacemark()
-				.withName(String.valueOf(s[1]))
-				.createAndSetPoint().addToCoordinates(Double.parseDouble(s[3]), Double.parseDouble(s[2]), Double.parseDouble(s[4]));
+				String timeStampSimpleExtension = s[0];
+				// create <Placemark> and set points and values.
+				Placemark placemark = KmlFactory.createPlacemark();
+				placemark.createAndSetTimeStamp().addToTimeStampSimpleExtension(timeStampSimpleExtension);
+				document.createAndAddPlacemark().withName("Placemark" + i).withOpen(Boolean.TRUE)
+				.withTimePrimitive(placemark.getTimePrimitive()).createAndSetPoint()
+				.addToCoordinates(Double.parseDouble(s[3]), Double.parseDouble(s[2]), Double.parseDouble(s[4]));
 			}
 			kml.marshal(new File(sourceFolder + "\\newKml.kml")); // create file.
 			System.out.println("KML file writing was successful.");
