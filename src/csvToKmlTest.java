@@ -3,10 +3,11 @@ import java.io.File;
 import org.junit.jupiter.api.Test;
 
 class csvToKmlTest {
-	String sourcefile = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newfile.csv";
-	String source = "C:\\Users\\Arad Zekler\\Desktop\\test folder";
+	String sourcefile = ""; // CSV file full path.
+	String source = ""; // Test folder full path.
+	String kmlFilePath = ""; // KML file full path
+	
 	csvWriter newfile = new csvWriter(source, sourcefile);
-	String kmlFilePath = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newKml.kml";
 
 	boolean checkFileExist(String filePath) { // Checking if file exists.
 		File f = new File(filePath);
@@ -20,8 +21,9 @@ class csvToKmlTest {
 	void testWriteFileKML() { // Checks if KML file was created.
 		csvToKml newkml = new csvToKml(source, sourcefile);
 		newkml.writeFileKML();
-
 		assertEquals(true, checkFileExist(kmlFilePath));
 	}
-
+	/* No need to test private method csvToArrayList() as 
+	 * writeFileKml() functionality is completely based on it.
+	 */
 }
