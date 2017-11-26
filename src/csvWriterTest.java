@@ -3,18 +3,22 @@ import java.io.File;
 import org.junit.jupiter.api.Test;
 
 class csvWriterTest {
-	String sourcefile = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newfile.csv";
-	String source = "C:\\Users\\Arad Zekler\\Desktop\\test folder";
+	String sourcefile = ""; // CSV file full path.
+	String source = ""; // Test folder full path.
+	String kmlFilePath = ""; // KML file full path
+	
 	csvWriter newfile = new csvWriter(source, sourcefile);
-	String kmlFilePath = "C:\\Users\\Arad Zekler\\Desktop\\test folder\\newKml.kml";
 
 	@Test
-	void testProgram() { // Asserts if the 2 files were created in paths.
-		csvWriter newfile = new csvWriter(source, sourcefile);
-		csvToKml newkml = new csvToKml(source, sourcefile);
+	void testProgram() { 						
+		csvWriter newfile = new csvWriter(source, sourcefile);	
+		csvToKml newkml = new csvToKml(source, sourcefile);	
 		newfile.csvWriteFile();
 		newkml.writeFileKML();
-
+		/* Asserts if the 2 files were created in paths.
+		 * If the test passes all the main functions in
+		 * the program are working properly.
+		 */
 		assertEquals(true, checkFileExist(sourcefile));
 		assertEquals(true, checkFileExist(kmlFilePath));
 	}
@@ -29,6 +33,9 @@ class csvWriterTest {
 
 	@Test
 	void testWriteFile() {
-		fail("Not yet implemented");
+		csvWriter newfile = new csvWriter(source, sourcefile);	
+		newfile.csvWriteFile();
+		// Simple test to see if CSV file was created.
+		assertEquals(true, checkFileExist(sourcefile));
 	}
 }
