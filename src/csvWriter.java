@@ -49,9 +49,9 @@ public class csvWriter {
 		private final String signal;
 
 		// Constructor
-		public Info(String[] column) {
+		public Info(String[] column, String path) {
 			time = column[3];
-			mod = column[2];
+			mod = getMod(path); // Uses the function to get the model from every file
 			lat = column[6];
 			lon = column[7];
 			alt = column[8];
@@ -70,37 +70,37 @@ public class csvWriter {
 		String line = "";
 
 		try { 
-			BufferedReader br = new BufferedReader(new FileReader(path));
-			br.readLine(); 
-			br.readLine();// reading 2 lines to avoid headers.
-			Info[] max = new Info[10];
-			int count = 0;
-			while ((line = br.readLine()) != null) {
-				String[] column = line.split(COMMA);
-				Info info = new Info(column);
-				// sort by time first
-				if (count > 0 && !max[0].time.equals(info.time)) {
-					print(max, count, fileWriter);
-					count = 0;
-				}
-				int i = 0;
-				// sort every row by signal.
-				while (i < count && Integer.parseInt(max[i].signal) > Integer.parseInt(info.signal)) {
-					++i;
-				}
-				while (i < count) {
-					Info pred = max[i];
-					max[i] = info;
-					info = pred;
-					++i;
-				}
-				if (count < max.length) {
+ 			BufferedReader br = new BufferedReader(new FileReader(path));
+ 			br.readLine(); 
+ 			br.readLine();// reading 2 lines to avoid headers.
+ 			Info[] max = new Info[10];
+ 			int count = 0;
+ 			while ((line = br.readLine()) != null) {
+ 				String[] column = line.split(COMMA);
+ 				Info info = new Info(column,path);
+ 				// sort by time first
+ 				if (count > 0 && !max[0].time.equals(info.time)) {
+ 					print(max, count, fileWriter);
+ 					count = 0;
+ 				}
+ 				int i = 0;
+ 				// sort every row by signal.
+ 				while (i < count && Integer.parseInt(max[i].signal) > Integer.parseInt(info.signal)) {
+ 					++i;
+ 				}
+ 				while (i < count) {
+ 					Info pred = max[i];
+ 					max[i] = info;
+ 					info = pred;
+ 					++i;
+ 				}
+ 				if (count < max.length) {
 					max[count++] = info;
-				}
-			}
-			if (count > 0) {
-				print(max, count, fileWriter);
-			}
+  				}
+  			}
+ 			if (count > 0) {
+ 				print(max, count, fileWriter);
+ 			}
 			System.out.println("CSV file read was successful.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,7 +115,8 @@ public class csvWriter {
 			line = br.readLine();
 			String[] column = line.split(COMMA);
 			br.close();
-			return column[2];
+			String model=column[2].substring(6);// takes only the model from the whole line
+ 			return model;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "Reading Error";
