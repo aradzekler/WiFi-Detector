@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
-import de.micromata.opengis.kml.v_2_2_0.*; //imported from API.
 
 /**
  * @authors Arad Zekler, Dolev Hindy, Naor Dahan.
@@ -70,44 +68,44 @@ public class csvWriter {
 		String line = "";
 
 		try { 
- 			BufferedReader br = new BufferedReader(new FileReader(path));
- 			br.readLine(); 
- 			br.readLine();// reading 2 lines to avoid headers.
- 			Info[] max = new Info[10];
- 			int count = 0;
- 			while ((line = br.readLine()) != null) {
- 				String[] column = line.split(COMMA);
- 				Info info = new Info(column,path);
- 				// sort by time first
- 				if (count > 0 && !max[0].time.equals(info.time)) {
- 					print(max, count, fileWriter);
- 					count = 0;
- 				}
- 				int i = 0;
- 				// sort every row by signal.
- 				while (i < count && Integer.parseInt(max[i].signal) > Integer.parseInt(info.signal)) {
- 					++i;
- 				}
- 				while (i < count) {
- 					Info pred = max[i];
- 					max[i] = info;
- 					info = pred;
- 					++i;
- 				}
- 				if (count < max.length) {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			br.readLine(); 
+			br.readLine();// reading 2 lines to avoid headers.
+			Info[] max = new Info[10];
+			int count = 0;
+			while ((line = br.readLine()) != null) {
+				String[] column = line.split(COMMA);
+				Info info = new Info(column,path);
+				// sort by time first
+				if (count > 0 && !max[0].time.equals(info.time)) {
+					print(max, count, fileWriter);
+					count = 0;
+				}
+				int i = 0;
+				// sort every row by signal.
+				while (i < count && Integer.parseInt(max[i].signal) > Integer.parseInt(info.signal)) {
+					++i;
+				}
+				while (i < count) {
+					Info pred = max[i];
+					max[i] = info;
+					info = pred;
+					++i;
+				}
+				if (count < max.length) {
 					max[count++] = info;
-  				}
-  			}
- 			if (count > 0) {
- 				print(max, count, fileWriter);
- 			}
+				}
+			}
+			if (count > 0) {
+				print(max, count, fileWriter);
+			}
+			br.close();
 			System.out.println("CSV file read was successful.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
 	}
-	/* Seperate reader function to get and store 
-	 * device model name.
+	/* Separate reader function to get and store device model name.
 	 * @param path       CSV file full path.
 	 */
 	private static String getMod(String path) {
@@ -118,7 +116,7 @@ public class csvWriter {
 			String[] column = line.split(COMMA);
 			br.close();
 			String model=column[2].substring(6);// takes only the model from the whole line
- 			return model;
+			return model;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "Reading Error";
@@ -195,7 +193,6 @@ public class csvWriter {
 				+ " SSID8, MAC8, Frequncy8, Signal8," + " SSID9, MAC9, Frequncy9, Signal9,"
 				+ " SSID10, MAC10, Frequncy10, Signal10";
 		FileWriter fileWriter = null;
-		String line = "";
 		boolean flag = true;
 
 		try {
