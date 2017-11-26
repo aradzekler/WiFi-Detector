@@ -106,9 +106,11 @@ public class csvWriter {
 			e.printStackTrace();
 		} 
 	}
-	// Not useable yet.
+	/* Seperate reader function to get and store 
+	 * device model name.
+	 * @param path       CSV file full path.
+	 */
 	private static String getMod(String path) {
-		// returning model, input path csv file;
 		try {
 			String line = "";
 			BufferedReader br = new BufferedReader(new FileReader(path));
@@ -134,7 +136,7 @@ public class csvWriter {
 		try {
 			fileWriter.append(max[0].time);
 			fileWriter.append(COMMA);
-			fileWriter.append(max[0].mod);
+			fileWriter.append(max[0].mod);  // Writing of the first part of the row.
 			fileWriter.append(COMMA);
 			fileWriter.append(max[0].lat);
 			fileWriter.append(COMMA);
@@ -143,7 +145,7 @@ public class csvWriter {
 			fileWriter.append(max[0].alt);
 			for (int i = 0; i < count; ++i) {
 				fileWriter.append(COMMA);
-				fileWriter.append(max[i].wifi);
+				fileWriter.append(max[i].wifi); // Writing of the rest (10 strongest networks).
 				fileWriter.append(COMMA);
 				fileWriter.append(max[i].mac);
 				fileWriter.append(COMMA);
@@ -171,7 +173,7 @@ public class csvWriter {
 			if (a > 0) {
 				extension = extension.substring(a + 1);
 			}
-			if (extension.compareToIgnoreCase("txt") == 0 || extension.compareToIgnoreCase("csv") == 0) {
+			if (extension.compareToIgnoreCase("txt") == 0 || extension.compareToIgnoreCase("csv") == 0) { // File filter.
 				System.out.println(all_files[i]);
 				String path = all_files[i].toString();
 				writeFile(path, fileWriter);
