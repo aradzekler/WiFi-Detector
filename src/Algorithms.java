@@ -2,8 +2,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -12,7 +10,6 @@ import com.opencsv.*;
 public class Algorithms {
 
 	private static String mac;
-
 
 	public static void function1(String mac, String filePath) {
 		Vector<String> v = new Vector<String>(2, 2);
@@ -24,16 +21,14 @@ public class Algorithms {
 			// Read CSV Records One by One into a String array
 			String[] nextRecord;
 			while ((nextRecord = csvReader.readNext()) != null) {
-				for (int i = 0; i < 41 || nextRecord[i] != ""; i++) {
+				for (int i = 0; i < 44 && nextRecord[i+1] != null; i++) { // problem here, cancels loop after meeting null.
 					if (nextRecord[i].equals(mac)) {
 						v.addElement(nextRecord[i]);
-						v.addElement(nextRecord[i+1]);
+						v.addElement(nextRecord[i+2]);
 					}
 				}
 			}
 			Enumeration<String> vEnum = v.elements();
-			System.out.println("\nElements in vector:");
-
 			while(vEnum.hasMoreElements())
 				System.out.print(vEnum.nextElement() + " ");
 			System.out.println();
