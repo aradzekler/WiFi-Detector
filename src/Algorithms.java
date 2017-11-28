@@ -8,6 +8,13 @@ import java.util.Vector;
 import com.opencsv.*; // imported from library.
 
 public class Algorithms {
+	// parameters.
+	private final double POWER = 2;
+	private final double NORM = 10000;
+	private final double SIGNALDIFF = 0.4;
+	private final double MINDIFF = 3;
+	private final double NOSIGNAL = -120;
+	private final double DIFFNOSIGNAL = 100;
 
 	/** Find the weighted center point for maximum 3 networks from the same mac.
 	 * @param mac		 desired mac address.
@@ -39,23 +46,20 @@ public class Algorithms {
 				}
 			} // End of reading.
 			// Calculation.
+			double temp = 0;
 			for (int i = 0; i < Vector.size(); i += 4) {
-				double temp = 0;
 				temp = Double.parseDouble(Vector.get(i)); // Calculating weight for lat.
 				latWeightSum += (1/(temp * temp));
 			}
 			for (int i = 1; i < Vector.size(); i += 4) {
-				double temp = 0;
 				temp = Double.parseDouble(Vector.get(i)); // Calculating weight for lon.
 				lonWeightSum += (1/(temp * temp));
 			}
 			for (int i = 2; i < Vector.size(); i += 4) {
-				double temp = 0;
 				temp = Double.parseDouble(Vector.get(i)); // Calculating weight for alt.
 				altWeightSum += (1/(temp * temp));
 			}
 			for (int i = 3; i < Vector.size(); i += 4) { 
-				double temp = 0;
 				temp = Double.parseDouble(Vector.get(i)); // Calculating weight for signal.
 				sigWeightSum += (1/(temp * temp));
 			}
