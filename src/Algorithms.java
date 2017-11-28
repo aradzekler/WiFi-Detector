@@ -9,7 +9,10 @@ import com.opencsv.*; // imported from library.
 
 public class Algorithms {
 
-
+	/** Find the weighted center point for maximum 3 networks from the same mac.
+	 * @param		mac desired mac address.
+	 * @param		filePath path of CSV file.
+	 */
 	public static double[] weightedCenterPointGrade(String mac, String filePath) {
 		double latWeightSum = 0;
 		double sigWeightSum = 0;
