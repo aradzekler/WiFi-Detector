@@ -7,8 +7,8 @@ public class csvWriter {
 	final static String COMMA = ",";
 	final static String NEW_LINE_SEPARATOR = "\n";
 
-	private static String sourceFolder = "";
-	private static String destinationFile = "";
+	protected static String sourceFolder = "";
+	protected static String destinationFile = "";
 
 	// Getters & setters
 	public static String getDestinationFile() {
@@ -35,7 +35,7 @@ public class csvWriter {
 	}
 
 	// helping class to store information.
-	private static class Info {
+	static class Info {
 		private final String time;
 		private final int frq;
 		private final String mod;
@@ -86,17 +86,17 @@ public class csvWriter {
 				while (i < count && Integer.parseInt(max[i].signal) > Integer.parseInt(info.signal)) {
 					++i;
 				}
-				while (i < count) {
+				while (i < count) {  // putting information inside structure.
 					Info pred = max[i];
 					max[i] = info;
 					info = pred;
 					++i;
 				}
-				if (count < max.length) {
+				if (count < max.length) { // sizing up structure.
 					max[count++] = info;
 				}
 			}
-			if (count > 0) {
+			if (count > 0) {  // printing to file.
 				print(max, count, fileWriter);
 			}
 			br.close();
