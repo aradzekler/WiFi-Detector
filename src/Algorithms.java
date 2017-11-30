@@ -21,6 +21,7 @@ public class Algorithms {
 	 * @param filePath		 path of CSV file.
 	 */
 	public static double[] weightedCenterPointGrade(String mac, String filePath) {
+		final int NUMBER_OF_MACS = 4; // maximum number of mac addresses to store.
 		double latWeightSum = 0;
 		double sigWeightSum = 0;
 		double lonWeightSum = 0;
@@ -36,7 +37,7 @@ public class Algorithms {
 			while ((nextRecord = csvReader.readNext()) != null) {
 				for (int i = 0; i < nextRecord.length; i++) {
 					int count = 0;
-					if (nextRecord[i].equals(mac) && count < 4) { // Adding proper elements to vector.
+					if (nextRecord[i].equals(mac) && count < NUMBER_OF_MACS) { // Adding proper elements to vector.
 						Vector.addElement(nextRecord[2]);
 						Vector.addElement(nextRecord[3]);
 						Vector.addElement(nextRecord[4]);
@@ -47,19 +48,19 @@ public class Algorithms {
 			} // End of reading.
 			// Calculation.
 			double temp = 0;
-			for (int i = 0; i < Vector.size(); i += 4) {
+			for (int i = 0; i < Vector.size(); i += NUMBER_OF_MACS) {
 				temp = Double.parseDouble(Vector.get(i)); // Calculating weight for lat.
 				latWeightSum += (1/(temp * temp));
 			}
-			for (int i = 1; i < Vector.size(); i += 4) {
+			for (int i = 1; i < Vector.size(); i += NUMBER_OF_MACS) {
 				temp = Double.parseDouble(Vector.get(i)); // Calculating weight for lon.
 				lonWeightSum += (1/(temp * temp));
 			}
-			for (int i = 2; i < Vector.size(); i += 4) {
+			for (int i = 2; i < Vector.size(); i += NUMBER_OF_MACS) {
 				temp = Double.parseDouble(Vector.get(i)); // Calculating weight for alt.
 				altWeightSum += (1/(temp * temp));
 			}
-			for (int i = 3; i < Vector.size(); i += 4) { 
+			for (int i = 3; i < Vector.size(); i += NUMBER_OF_MACS) { 
 				temp = Double.parseDouble(Vector.get(i)); // Calculating weight for signal.
 				sigWeightSum += (1/(temp * temp));
 			}
