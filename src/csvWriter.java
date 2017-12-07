@@ -9,6 +9,7 @@ public class csvWriter {
 
 	protected static String sourceFolder = "";
 	protected static String destinationFile = "";
+	protected static String writePath = "";
 
 	// Getters & setters
 	public static String getDestinationFile() {
@@ -23,15 +24,23 @@ public class csvWriter {
 	public static void setSourceFolder(String sourceFolder) {
 		csvWriter.sourceFolder = sourceFolder;
 	}
+	public static String getWritePath() {
+		return writePath;
+	}
+	public static void setWritePath(String writePath) {
+		csvWriter.writePath = writePath;
+	}
 
 	/**
 	 * Constructor.
-	 * @param sourceFolder source folder to read files from.
-	 * @param destinationFile destination csv file.
+	 * @param sourceFolder 	source folder to read files from.
+	 * @param destination 	File destination csv file.
+	 * @param writePath		desired writing path of csv file
 	 */
-	public csvWriter(String sourceFolder, String destinationFile) {
+	public csvWriter(String sourceFolder, String destinationFile, String writePath) {
 		csvWriter.setDestinationFile(destinationFile);
 		csvWriter.setSourceFolder(sourceFolder);
+		csvWriter.setWritePath(writePath);
 	}
 
 	// helping class to store information.
@@ -62,20 +71,20 @@ public class csvWriter {
 
 	/**
 	 * Writer function for CSV.
-	 * @param temp       getting the parameter from csvFolderReader().
+	 * @param filwWriter      passed writer.
 	 */
-	private static void writeFile(String path, FileWriter fileWriter) {
+	private static void writeFile(FileWriter fileWriter) {
 		String line = "";
 
 		try { 
-			BufferedReader br = new BufferedReader(new FileReader(path));
+			BufferedReader br = new BufferedReader(new FileReader(writePath));
 			br.readLine(); 
 			br.readLine();// reading 2 lines to avoid headers.
 			Info[] max = new Info[10];
 			int count = 0;
 			while ((line = br.readLine()) != null) {
 				String[] column = line.split(COMMA);
-				Info info = new Info(column,path);
+				Info info = new Info(column,writePath);
 				// sort by time first
 				if (count > 0 && !max[0].time.equals(info.time)) {
 					print(max, count, fileWriter);
@@ -105,7 +114,7 @@ public class csvWriter {
 			e.printStackTrace();
 		} 
 	}
-	/* Separate reader function to get and store device model name.
+	/** Separate reader function to get and store device model name.
 	 * @param path       CSV file full path.
 	 */
 	private static String getMod(String path) {
@@ -115,8 +124,8 @@ public class csvWriter {
 			line = br.readLine();
 			String[] column = line.split(COMMA);
 			br.close();
-			String model=column[2].substring(6);// takes only the model from the whole line
-			return model;
+			String model = column[2].substring(6);// takes only the model from the whole line
+			return model;							// too specific.
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "Reading Error";
@@ -174,7 +183,7 @@ public class csvWriter {
 			if (extension.compareToIgnoreCase("txt") == 0 || extension.compareToIgnoreCase("csv") == 0) { // File filter.
 				System.out.println(all_files[i]);
 				String path = all_files[i].toString();
-				writeFile(path, fileWriter);
+				writeFile(fileWriter);
 			}
 			else {
 				System.out.println("Wrong extension file found. Didn't read.");
@@ -196,7 +205,7 @@ public class csvWriter {
 		boolean flag = true;
 
 		try {
-			fileWriter = new FileWriter(getDestinationFile()); 
+			fileWriter = new FileWriter(getWritePath()); 
 			fileWriter.append(FILE_HEADER.toString()); // Write the CSV file header
 			fileWriter.append(NEW_LINE_SEPARATOR);
 			while(flag) {
