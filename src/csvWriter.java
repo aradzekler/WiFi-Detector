@@ -115,7 +115,7 @@ public class csvWriter {
 			String[] column = line.split(COMMA);
 			br.close();
 			String model = column[2].substring(6);// takes only the model from the whole line
-			return model;							// too specific.
+			return model;							// too specific, need to be more general.
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "Reading Error";
@@ -160,7 +160,7 @@ public class csvWriter {
 	 * in folders and turn them into 1 csv file.
 	 */
 	private boolean csvFolderReader(FileWriter fileWriter) {
-		File Location = new File(getSourceFolder()); //folder path name
+		File Location = new File(getSourceFolder()); // folder path name
 		File[] all_files = Location.listFiles();
 		int i = 0;
 
@@ -172,7 +172,7 @@ public class csvWriter {
 			}
 			if (extension.compareToIgnoreCase("txt") == 0 || extension.compareToIgnoreCase("csv") == 0) {
 				System.out.println(all_files[i]);
-				String path = all_files[i].toString();
+				String path = all_files[i].toString(); // path of readed csv file.
 				writeFile(path, fileWriter);
 			}
 			else {
@@ -198,7 +198,7 @@ public class csvWriter {
 			fileWriter = new FileWriter(getDestinationFile()); 
 			fileWriter.append(FILE_HEADER.toString()); // Write the CSV file header
 			fileWriter.append(NEW_LINE_SEPARATOR);
-			while(flag) {
+			while(flag) { // if not done reading...
 				flag = csvFolderReader(fileWriter);
 			}
 		} catch (IOException e) {
