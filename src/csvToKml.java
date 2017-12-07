@@ -21,7 +21,7 @@ public class csvToKml extends csvWriter {
 	// CSV to KML function using JAK API.
 	public void writeFileKML() {
 		try {
-			csvToArrayList(getDestinationFile());
+			csvToArrayList();
 			Kml kml = KmlFactory.createKml(); // creating a new instance.
 			Document document = kml.createAndSetDocument().withName("Placemarks");
 
@@ -43,11 +43,11 @@ public class csvToKml extends csvWriter {
 	}
 
 	// Converting CSV file to an ArrayList. used by writeFileKML().
-	private void csvToArrayList(String path) {
+	private void csvToArrayList() {
 		// Reads CSV file from string input, than transfers all information to ArrayList.
 		ArrayList<String[]> csvList = new ArrayList<String[]>();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File(path)));
+			BufferedReader br = new BufferedReader(new FileReader(new File(getDestinationFile())));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] entries = line.split(COMMA);
