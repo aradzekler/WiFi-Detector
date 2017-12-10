@@ -31,8 +31,8 @@ public class csvWriter {
 	 * @param destinationFile destination csv file.
 	 */
 	public csvWriter(String sourceFolder, String destinationFile) {
-		csvWriter.setDestinationFile(destinationFile);
 		csvWriter.setSourceFolder(sourceFolder);
+		csvWriter.setDestinationFile(destinationFile);
 	}
 
 	// helping class to store information.
@@ -172,8 +172,10 @@ public class csvWriter {
 			}
 			if (extension.compareToIgnoreCase("txt") == 0 || extension.compareToIgnoreCase("csv") == 0) {
 				System.out.println(all_files[i]);
-				String path = all_files[i].toString(); // path of readed csv file.
-				writeFile(path, fileWriter);
+				String path = all_files[i].toString(); // path of csv file.
+				if (path.compareTo(getDestinationFile()) != 0) { // if not the created csv file.
+					writeFile(path, fileWriter);
+				}
 			}
 			else {
 				System.out.println("Wrong extension file found. Didn't read.");
