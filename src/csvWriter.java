@@ -64,7 +64,8 @@ public class csvWriter {
 
 	/**
 	 * Writer function for CSV.
-	 * @param temp       getting the parameter from csvFolderReader().
+	 * @param path		getting the parameter from csvFolderReader().
+	 * @param filewWriter		getting the parameter from csvFolderReader().
 	 */
 	private static void writeFile(String path, FileWriter fileWriter) {
 		String line = "";
@@ -106,7 +107,10 @@ public class csvWriter {
 			e.printStackTrace();
 		} 
 	}
-
+	/** 
+	 * Method to get model name.
+	 * @param path		getting path from writeFile().
+	 */
 	private static String getMod(String path) {
 		try {
 			String line = "";
@@ -115,7 +119,7 @@ public class csvWriter {
 			String[] column = line.split(COMMA);
 			br.close();
 			String model = column[2].substring(6);// takes only the model from the whole line
-			return model;							// too specific, need to be more general.
+			return model;			// too specific, need to be more general.
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "Reading Error";
