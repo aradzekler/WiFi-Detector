@@ -15,11 +15,9 @@ public class csvToKmlByID extends csvToKml implements FilterInterface {
 	private String id;
 
 	/** Constructor 
-	 * @param sourceFolder enter the source folder's full path.
-	 * @param destinationFile enter the csv file full path.
 	 * @param id enter id to filter by.
 	 */
-	public csvToKmlByID(String sourceFolder, String destinationFile, String id) {
+	public csvToKmlByID(String id) {
 		super(sourceFolder, destinationFile);
 		this.id = id;
 	}
