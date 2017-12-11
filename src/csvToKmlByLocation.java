@@ -16,7 +16,13 @@ public class csvToKmlByLocation extends csvToKml implements filterInterface {
 	private double lon;
 	private double radius;
 
-	// constructer.
+	/** Constructor.
+	 * @param sourceFolder enter the source folder's full path.
+	 * @param destinationFile enter the csv file full path.
+	 * @param lat latitude
+	 * @param lon lontitude
+	 * @param radius radius from center point.
+	 */
 	public csvToKmlByLocation(String sourceFolder, String destinationFile, double lat, double lon, double radius) {
 		super(sourceFolder, destinationFile);
 		this.lat = lat;
@@ -36,7 +42,7 @@ public class csvToKmlByLocation extends csvToKml implements filterInterface {
 				String[] s = csvList.get(i);
 
 				double distance = calculateDistance(lat, lon, Double.parseDouble(s[2]), Double.parseDouble(s[3]));
-				
+
 				if (distance <= radius) {
 					String timeStampSimpleExtension = s[0];
 					// create <Placemark> and set points and values.
@@ -90,5 +96,4 @@ public class csvToKmlByLocation extends csvToKml implements filterInterface {
 
 		return distance;
 	}
-
 }
