@@ -38,7 +38,6 @@ public class csvToKmlByLocation extends csvToKml implements FilterInterface {
 
 			for (int i = 1; i < csvList.size(); i++) { // looping all elements in ArrayList.
 				String[] s = csvList.get(i);
-
 				double distance = calculateDistance(lat, lon, Double.parseDouble(s[2]), Double.parseDouble(s[3]));
 
 				if (distance <= radius) {
