@@ -14,4 +14,5 @@ or use included JAR files (same API) found in Javaapiforkml-master folder.
 2. Invoke ObjectName.csvWriteFile(); to read from destination folder and write a new 
 CSV file that includes top ten strongest networks.
 3. Invoke ObjectName.writeFileKML(); to write the csv file and create a new formatted KML file from it.
-
+4. In order to create a filtered KML file, create a new csvToKmlByTime or csvToKmlByLocation object (depends 
+on filter and enter correct parameters) and invoke writeFileKML() on the object.
