@@ -17,13 +17,11 @@ public class csvToKmlByLocation extends csvToKml implements FilterInterface {
 	private double radius;
 
 	/** Constructor.
-	 * @param sourceFolder enter the source folder's full path.
-	 * @param destinationFile enter the csv file full path.
 	 * @param lat latitude
-	 * @param lon lontitude
-	 * @param radius radius from center point.
+	 * @param lon longitude
+	 * @param radius given radius from center point.
 	 */
-	public csvToKmlByLocation(String sourceFolder, String destinationFile, double lat, double lon, double radius) {
+	public csvToKmlByLocation(double lat, double lon, double radius) {
 		super(sourceFolder, destinationFile);
 		this.lat = lat;
 		this.lon = lon;
