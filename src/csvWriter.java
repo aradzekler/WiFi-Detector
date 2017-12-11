@@ -8,8 +8,8 @@ public class csvWriter {
 	final static String COMMA = ",";
 	final static String NEW_LINE_SEPARATOR = "\n";
 
-	private static String sourceFolder = "";
-	private static String destinationFile = "";
+	protected static String sourceFolder = "";
+	protected static String destinationFile = "";
 
 	// Getters & setters
 	public static String getDestinationFile() {
