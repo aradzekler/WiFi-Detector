@@ -14,12 +14,16 @@ public class csvToKmlByTime extends csvToKml implements filterInterface {
 	private ArrayList<String[]> csvList;
 	private String time;
 
-	// constructer.
-	public csvToKmlByTime(String sourceFolder, String destinationFile, String time) {// enter time in yyyy-mm-dd  hh:mm:ss format.
+	/** Constructor 
+	 * @param sourceFolder enter the source folder's full path.
+	 * @param destinationFile enter the csv file full path.
+	 * @param time enter time in yyyy-mm-dd  hh:mm:ss format.
+	 */
+	public csvToKmlByTime(String sourceFolder, String destinationFile, String time) {
 		super(sourceFolder, destinationFile);
 		this.time = time;
 	}
-	
+
 	// writes KML file filtered by given time. can take missing format arguments like yyyy or hh:mm:ss.
 	@Override
 	public void writeFileKML() { 
