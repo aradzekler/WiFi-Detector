@@ -15,11 +15,9 @@ public class csvToKmlByTime extends csvToKml implements FilterInterface {
 	private String time;
 
 	/** Constructor 
-	 * @param sourceFolder enter the source folder's full path.
-	 * @param destinationFile enter the csv file full path.
 	 * @param time enter time in yyyy-mm-dd  hh:mm:ss format.
 	 */
-	public csvToKmlByTime(String sourceFolder, String destinationFile, String time) {
+	public csvToKmlByTime(String time) {
 		super(sourceFolder, destinationFile);
 		this.time = time;
 	}
