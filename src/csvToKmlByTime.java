@@ -9,7 +9,7 @@ import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.KmlFactory;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
 
-public class csvToKmlByTime extends csvToKml implements filterInterface { 
+public class csvToKmlByTime extends csvToKml implements FilterInterface { 
 
 	private ArrayList<String[]> csvList;
 	private String time;
