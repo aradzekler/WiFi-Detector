@@ -33,13 +33,17 @@ public class csvToKmlByTime extends csvToKml implements FilterInterface {
 			for (int i = 1; i < csvList.size(); i++) { // looping all elements in ArrayList.
 				String[] s = csvList.get(i);
 				if (s[0].contains(time)) {
-					String timeStampSimpleExtension = s[0];
-					// create <Placemark> and set points and values.
-					Placemark placemark = KmlFactory.createPlacemark();
-					placemark.createAndSetTimeStamp().addToTimeStampSimpleExtension(timeStampSimpleExtension);
-					document.createAndAddPlacemark().withName("Placemark" + i).withOpen(Boolean.TRUE)
-					.withTimePrimitive(placemark.getTimePrimitive()).createAndSetPoint()
-					.addToCoordinates(Double.parseDouble(s[3]), Double.parseDouble(s[2]), Double.parseDouble(s[4]));
+					try {
+						String timeStampSimpleExtension = s[0];
+						// create <Placemark> and set points and values.
+						Placemark placemark = KmlFactory.createPlacemark();
+						placemark.createAndSetTimeStamp().addToTimeStampSimpleExtension(timeStampSimpleExtension);
+						document.createAndAddPlacemark().withName("Placemark" + i).withOpen(Boolean.TRUE)
+						.withTimePrimitive(placemark.getTimePrimitive()).createAndSetPoint()
+						.addToCoordinates(Double.parseDouble(s[3]), Double.parseDouble(s[2]), Double.parseDouble(s[4]));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 				else {
 					continue;
