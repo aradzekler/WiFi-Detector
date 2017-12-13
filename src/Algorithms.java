@@ -19,12 +19,12 @@ public class Algorithms extends csvWriter{
 
 	// parameters.
 	private static String mac;
-	private final int POWER = 2;
-	private final int NORM = 10000;
-	private final double SIGNALDIFF = 0.4;
-	private final int MINDIFF = 3;
+	private final static int POWER = 2;
+	private final static int NORM = 10000;
+	private final static double SIGNALDIFF = 0.4;
+	private final static int MINDIFF = 3;
 	private final static int NOSIGNAL = -120;
-	private final int DIFFNOSIGNAL = 100;
+	private final static int DIFFNOSIGNAL = 100;
 
 	/** Find the weighted center point for maximum 3 networks from the same mac.
 	 * @param mac		 desired mac address.
@@ -128,24 +128,68 @@ public class Algorithms extends csvWriter{
 				}
 			}
 		}
-			for (int i = 0; i < vector.size(); i++) {
-				if (Integer.parseInt(vector.get(i).lastElement()) < max3) {
-					vector.remove(i);
-					--i;
-				}
+		for (int i = 0; i < vector.size(); i++) {
+			if (Integer.parseInt(vector.get(i).lastElement()) < max3) {
+				vector.remove(i);
+				--i;
 			}
 		}
+	}
 
 	private static void algorithm2() {
 		Vector<Vector<String>> strongestVector = recordsToVector();
 		Vector<Vector<String>> vector = recordsToVector();
 		filterStrongest(strongestVector);
-		
+
 		for (int i = 0; i < strongestVector.size(); i++) {
 			for (int j = 0; j < vector.size(); j++) {
-				
+				int diff = 0;
+				double weight = 0.0;
+
+				if (Integer.parseInt(vector.get(j).lastElement()) > NOSIGNAL  
+						&& Integer.parseInt(vector.get(j).lastElement()) < DIFFNOSIGNAL) {
+					if (!vector.get(j).equals(strongestVector.get(i))) {
+						diff = Math.max(Math.abs(Integer.parseInt(vector.get(j).lastElement()) - Integer.parseInt(strongestVector.get(i).lastElement())), MINDIFF);
+						weight = NORM / (Math.pow((double)diff, SIGNALDIFF) * Math.pow(Double.parseDouble(strongestVector.get(i).lastElement()), POWER));
+						vector.get(j).addElement(Double.toString(weight));
+					}
+					else {
+						continue;
+					}
+				}
 			}
 		}
-		
+		double sumWeight = 0.0;
+		for (int i = 0; i < strongestVector.size(); i++) {
+			double totalWeight = 1.0;
+			for (int j = 0; j < vector.size(); j++) {
+				totalWeight *= Double.parseDouble(vector.get(j).lastElement());
+				sumWeight += Double.parseDouble(vector.get(j).lastElement());
+			}
+			strongestVector.get(i).addElement(Double.toString(totalWeight));
+		}
+		for (int i = 0; i < strongestVector.size(); i++) {
+			double weight = Double.parseDouble(strongestVector.get(i).lastElement());
+			double latWeight = Double.parseDouble(strongestVector.get(i).get(0)) * weight;
+			double lonWeight = Double.parseDouble(strongestVector.get(i).get(1)) * weight;
+			double altWeight = Double.parseDouble(strongestVector.get(i).get(2)) * weight;
+			double sigWeight = Double.parseDouble(strongestVector.get(i).get(3)) * weight;
+			
+			strongestVector.get(i).addElement(Double.toString(latWeight)); //5
+			strongestVector.get(i).addElement(Double.toString(lonWeight)); //6
+			strongestVector.get(i).addElement(Double.toString(altWeight)); //7
+			
+		}
+		double totalLatWeight = 0.0;
+		double totalLonWeight = 0.0;
+		double totalAltWeight = 0.0;
+		for (int i = 0; i < strongestVector.size(); i++) {
+			totalLatWeight += Double.parseDouble(vector.get(i).get(5));
+			totalLonWeight += Double.parseDouble(vector.get(i).get(6));
+			totalAltWeight += Double.parseDouble(vector.get(i).get(7));
+		}
+		totalLatWeight = totalLatWeight / sumWeight;
+		totalLonWeight = totalLonWeight / sumWeight;
+		totalAltWeight = totalAltWeight / sumWeight;
 	}
 }
