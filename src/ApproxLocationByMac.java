@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.opencsv.*; // imported from library.
 
-public class ApproxLocationByMac extends csvWriter{
+public class ApproxLocationByMac extends csvWriter implements AlgorithmsInterface {
 
 	public ApproxLocationByMac() {
 		super(sourceFolder, destinationFile);
@@ -19,6 +19,7 @@ public class ApproxLocationByMac extends csvWriter{
 	private final static int NOSIGNAL = -120;
 
 	// reads from CSV file and stores lines in vector of vectors.
+	@Override
 	public Vector<Vector<String>> recordsToVector()  {
 
 		try (
@@ -31,7 +32,7 @@ public class ApproxLocationByMac extends csvWriter{
 				for (int i = 0; i < nextRecord.length; i++) {
 					int count = StringUtils.countMatches(nextRecord[i], ':'); 
 					if (count >= 4) {
-						weightedCenterPointGrade(nextRecord[i]); // if the needed elements are existing,
+						weightedCenterPointFirstAlgo(nextRecord[i]); // if the needed elements are existing,
 					}											 // invoke algorithm on the record.
 				}
 			}
@@ -48,7 +49,7 @@ public class ApproxLocationByMac extends csvWriter{
 	 * return the calculated record.
 	 * @param mac	desired mac address.
 	 */
-	private static void weightedCenterPointGrade(String mac) {
+	private void weightedCenterPointFirstAlgo(String mac) {
 		double latWeightSum = 0, sigWeightSum = 0, lonWeightSum = 0, altWeightSum = 0;
 		Vector<Vector<String>> Vector = recordsToVectorByMac(mac); // build 2d vector filled with records from the same given mac.
 		filterStrongest(Vector);	// filter the strongest records by signal.
@@ -98,7 +99,7 @@ public class ApproxLocationByMac extends csvWriter{
 	 * @param mac passed mac address.
 	 * @param vectorOfVecs 2d vector to check.
 	 */
-	private static boolean isMacInsideVector(String mac, Vector<Vector<String>> vectorOfVecs) {
+	private boolean isMacInsideVector(String mac, Vector<Vector<String>> vectorOfVecs) {
 		if (vectorOfVecs == null) {
 			return false;
 		}
@@ -116,7 +117,7 @@ public class ApproxLocationByMac extends csvWriter{
 	 * function reads from CSV file and putting desired elements inside 2d vector.
 	 * @param mac passed mac address.
 	 */
-	private static Vector<Vector<String>> recordsToVectorByMac(String mac)  {
+	private Vector<Vector<String>> recordsToVectorByMac(String mac)  {
 		Vector<Vector<String>> vecOfVecs = new Vector<Vector<String>>();
 
 		try (
@@ -151,7 +152,7 @@ public class ApproxLocationByMac extends csvWriter{
 	 * simple printing function.
 	 * @param v 2d vector to print.
 	 */
-	private static void printVectorOfVectors(Vector<Vector<String>> v) {
+	private void printVectorOfVectors(Vector<Vector<String>> v) {
 		String m = "";
 		for (int i = 0; i < v.size(); i++){
 			for (int j = 0; j < v.get(i).size(); j++) {
@@ -166,7 +167,7 @@ public class ApproxLocationByMac extends csvWriter{
 	 * function filters the 3 strongest mac records from given 2d vector.
 	 * @param vectorOfVecs	2d vector to filter.
 	 */
-	private static void filterStrongest(Vector<Vector<String>> vectorOfVecs) {
+	private void filterStrongest(Vector<Vector<String>> vectorOfVecs) {
 		int max1 = NOSIGNAL, max2 = NOSIGNAL, max3 = NOSIGNAL;
 
 		for (int i = 0; i < vectorOfVecs.size(); i++) {
