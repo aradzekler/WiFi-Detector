@@ -1,11 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.File;
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.Before;
-import org.junit.jupiter.api.Test;
+
 
 class csvWriterTest {
 	String sourcefile = ""; // CSV file full path.
