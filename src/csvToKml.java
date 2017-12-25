@@ -1,3 +1,4 @@
+package filters;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -8,9 +9,10 @@ import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.KmlFactory;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
+import utils.csvWriter;
 
 public class csvToKml extends csvWriter implements FilterInterface {
-
+	final static String COMMA = ",";
 	private ArrayList<String[]> csvList;
 
 	//Constructor.
