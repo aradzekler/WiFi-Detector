@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="iOTab" minHeight="0.0" minWidth="0.0"
+	prefHeight="282.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/9"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.IOTabController">
+	<children>
+		<Pane layoutX="12.0" layoutY="50.0" prefHeight="37.0" prefWidth="625.0">
+			<children>
+				<TextField layoutX="167.0" layoutY="1.0" prefHeight="26.0"
+					prefWidth="391.0" />
+				<Button layoutX="567.0" mnemonicParsing="false" text="Enter " />
+				<Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0"
+					text="Source folder's full path:" />
+			</children>
+		</Pane>
+		<Pane layoutX="12.0" layoutY="88.0" prefHeight="37.0" prefWidth="625.0">
+			<children>
+				<TextField layoutX="167.0" layoutY="5.0" prefHeight="26.0"
+					prefWidth="128.0" />
+				<Button layoutX="568.0" layoutY="3.0" mnemonicParsing="false"
+					text="Enter " />
+				<Text layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0"
+					text="Unified CSV file name:" />
+			</children>
+		</Pane>
+		<Pane layoutX="36.0" layoutY="123.0" prefHeight="45.0" prefWidth="611.0">
+			<children>
+				<Button layoutX="558.0" mnemonicParsing="false" text="Join" />
+				<Text layoutX="-30.0" layoutY="18.0" strokeType="OUTSIDE"
+					strokeWidth="0.0"
+					text="Join csv files in source folder to a unified single file:"
+					wrappingWidth="407.40087890625" />
+			</children>
+		</Pane>
+		<Pane layoutX="22.0" layoutY="166.0" prefHeight="37.0" prefWidth="625.0">
+			<children>
+				<Button layoutX="558.0" mnemonicParsing="false" text="Delete" />
+				<Text layoutX="-14.0" layoutY="18.0" strokeType="OUTSIDE"
+					strokeWidth="0.0"
+					text="Delete all existing data: (will permanently delete all existing data.)" />
+			</children>
+		</Pane>
+		<Pane layoutX="8.0" layoutY="198.0" prefHeight="37.0" prefWidth="635.0">
+			<children>
+				<Button layoutX="558.0" mnemonicParsing="false" text="Convert" />
+				<Text layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0"
+					text="Convert unified CSV file to a runnable KML file:"
+					wrappingWidth="390.99999219179153" />
+			</children>
+		</Pane>
+	</children>
+</AnchorPane>
