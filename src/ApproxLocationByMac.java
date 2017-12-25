@@ -1,3 +1,4 @@
+package algorithms;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -6,7 +7,10 @@ import java.util.Vector;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.opencsv.*; // imported from library.
+// imported from library.
+import com.opencsv.CSVReader;
+
+import utils.csvWriter;
 
 public class ApproxLocationByMac extends csvWriter implements AlgorithmsInterface {
 
