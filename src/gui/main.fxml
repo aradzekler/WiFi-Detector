@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<fx:root type="VBox" fx:id="Main" xmlns="http://javafx.com/javafx/9"
-	xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="Main" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
 			minWidth="-Infinity" prefHeight="527.0" prefWidth="651.0"
@@ -27,7 +26,7 @@
 				</Tab>
 				<Tab text="Input / Output">
 					<content>
-						<fx:include fx:id="iOTab" source="IOTab.fxml" />
+						<fx:include fx:id="IOTab" source="/ui/IOTab.fxml" />
 					</content>
 				</Tab>
 				<Tab text="Filters">
@@ -45,4 +44,4 @@
 			</tabs>
 		</TabPane>
 	</children>
-</fx:root>
+</VBox>
