@@ -7,35 +7,42 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<fx:root type="VBox" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainController">
-   <children>
-      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="651.0" tabClosingPolicy="UNAVAILABLE">
-      	<tabs>
-      		<Tab text="Information">
-      			<content>
-      				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-      					<children>
-      						<TextArea layoutX="14.0" layoutY="21.0" prefHeight="200.0" prefWidth="624.0" text="&#10;Instructions:" />
-      					</children>
-      				</AnchorPane>
-      			</content>
-      		</Tab>
-      		<Tab text="Input / Output">
-      			<content>
-      				<fx:include fx:id="iOTab" source="IOTab.fxml" />
-      			</content>
-      		</Tab>
-      		<Tab text="Filters">
-      			<content>
-      				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      			</content>
-      		</Tab>
-      		<Tab text="Algorithms">
-      			<content>
-      				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      			</content>
-      		</Tab>
-      	</tabs>
-      </TabPane>
-   </children>
+<fx:root type="VBox" fx:id="Main" xmlns="http://javafx.com/javafx/9"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+			minWidth="-Infinity" prefHeight="527.0" prefWidth="651.0"
+			tabClosingPolicy="UNAVAILABLE">
+			<tabs>
+				<Tab text="Information">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<TextArea layoutX="14.0" layoutY="21.0" prefHeight="200.0"
+									prefWidth="624.0" text="&#10;Instructions:" />
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Input / Output">
+					<content>
+						<fx:include fx:id="iOTab" source="IOTab.fxml" />
+					</content>
+				</Tab>
+				<Tab text="Filters">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0" />
+					</content>
+				</Tab>
+				<Tab text="Algorithms">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0" />
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+	</children>
 </fx:root>
