@@ -4,14 +4,12 @@ import org.junit.jupiter.api.Test;
 
 class ApproxLocationByMacTest {
 
-
-
-
-
 	@Test
-	void ApproxLocationByMacTest() {
-	
-		fail("Not yet implemented");
+	void testProgram() { 
+		ApproxLocationByMac algo1 =new ApproxLocationByMac();
+		algo1.recordsToVector();
+		
 	}
 
 }
+
