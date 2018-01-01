@@ -12,6 +12,7 @@ public class MainController { // main.fxml controller.
 
 	@FXML public void initialize() {
 		System.out.println("Application started");
-		IOTabController.init(this);
+		IOTabController.initialize(null, null);
 	}
 }
+
