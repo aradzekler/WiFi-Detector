@@ -11,6 +11,7 @@ public class csvWriter {
 
 	protected static String sourceFolder = "";
 	protected static String destinationFile = "";
+	private static int dataCount;
 
 	// Getters & setters
 	public static String getDestinationFile() {
@@ -156,6 +157,7 @@ public class csvWriter {
 				fileWriter.append(max[i].signal);
 			}
 			fileWriter.append(NEW_LINE_SEPARATOR);
+			setDataCount(getDataCount() + 1);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -212,5 +214,12 @@ public class csvWriter {
 			System.out.println("File Writer error");
 			e.printStackTrace();
 		}		
+	}
+
+	public static int getDataCount() {
+		return dataCount;
+	}
+	public static void setDataCount(int dataCount) {
+		csvWriter.dataCount = dataCount;
 	}
 }
