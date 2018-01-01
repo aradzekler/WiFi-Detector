@@ -1,3 +1,4 @@
+package algorithms;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -19,13 +20,8 @@ public class ApproxLocationByMac extends csvWriter implements AlgorithmsInterfac
 
 	// parameters.
 	private static Vector<Vector<String>> vector = new Vector<Vector<String>>(10, 10);
-	
-	// get the macs with the approximate locations
-	public static Vector<Vector<String>> getVector() {
-		return vector;
-	}
-
 	private final static int NOSIGNAL = -120;
+	private int macCount;
 
 	// reads from CSV file and stores lines in vector of vectors.
 	@Override
@@ -38,12 +34,14 @@ public class ApproxLocationByMac extends csvWriter implements AlgorithmsInterfac
 			String[] nextRecord; // Store lines of CSV file.
 			csvReader.readNext();
 			while ((nextRecord = csvReader.readNext()) != null) {
+
 				for (int i = 0; i < nextRecord.length; i++) {
 					int count = StringUtils.countMatches(nextRecord[i], ':'); 
 					if (count >= 4) {
 						weightedCenterPointFirstAlgo(nextRecord[i]); // if the needed elements are existing,
 					}											 // invoke algorithm on the record.
 				}
+				setMacCount(getMacCount() + 1);
 			}
 			printVectorOfVectors(vector); 
 			reader.close(); // close reader.
@@ -200,5 +198,13 @@ public class ApproxLocationByMac extends csvWriter implements AlgorithmsInterfac
 				--i;
 			}
 		}
+	}
+
+	public int getMacCount() {
+		return macCount;
+	}
+
+	public void setMacCount(int macCount) {
+		this.macCount = macCount;
 	}
 }
