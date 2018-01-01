@@ -6,6 +6,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import algorithms.ApproxLocationByMac;
 import filters.csvToKml;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,8 +96,11 @@ public class IOTabController implements Initializable {  // IOTab.fxml controlle
 
 	@FXML // creates a dialog with data.
 	protected void handlePresentData(ActionEvent event) {
+		ApproxLocationByMac newalgo = new ApproxLocationByMac();
+		newalgo.recordsToVector();
 		getCsvFile();
-		String s = ("Number of data lines:" + csvWriter.getDataCount());
+		String s = ("Number of data lines:" + csvWriter.getDataCount() 
+		+ "\nNumber of MAC addresses:" + newalgo.getMacCount());
 		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "Details", s);
 	}
 
