@@ -7,10 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox fx:id="Main" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="Main" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="ui.MainController">
 	<children>
 		<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-			minWidth="-Infinity" prefHeight="527.0" prefWidth="651.0"
+			minWidth="-Infinity" prefHeight="527.0" prefWidth="655.0"
 			tabClosingPolicy="UNAVAILABLE">
 			<tabs>
 				<Tab text="Information">
