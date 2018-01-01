@@ -15,24 +15,27 @@
 				<TextField fx:id="sourceFolderFullPath" layoutX="167.0"
 					layoutY="1.0" prefHeight="26.0" prefWidth="391.0" />
 				<Button fx:id="sourceFolderPathSubmit" layoutX="567.0"
-					mnemonicParsing="false" text="Enter" onAction="#handleSourceFolderPathSubmit" />
+					mnemonicParsing="false" onAction="#handleSourceFolderPathSubmit"
+					text="Enter" />
 				<Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0"
 					text="Source folder's full path:" />
 			</children>
 		</Pane>
 		<Pane layoutX="12.0" layoutY="88.0" prefHeight="37.0" prefWidth="625.0">
 			<children>
-				<TextField id="csvFileName" layoutX="167.0" layoutY="5.0"
+				<TextField fx:id="csvFileName" layoutX="167.0" layoutY="5.0"
 					prefHeight="26.0" prefWidth="128.0" />
-				<Button id="csvFileNameSubmit" layoutX="568.0" layoutY="3.0"
-					mnemonicParsing="false" text="Enter " />
+				<Button id="csvFileNameSubmit" layoutX="567.0" layoutY="3.0"
+					mnemonicParsing="false" onAction="#handleSourceFileNameSubmit"
+					text="Enter " />
 				<Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0"
 					text="Unified CSV file name:" />
 			</children>
 		</Pane>
 		<Pane layoutX="12.0" layoutY="123.0" prefHeight="45.0" prefWidth="625.0">
 			<children>
-				<Button layoutX="558.0" mnemonicParsing="false" text="Join" />
+				<Button id="unifyCsvFiles" layoutX="567.0" mnemonicParsing="false"
+					onAction="#handleCsvFileNameSubmit" text="Join" />
 				<Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0"
 					text="Join csv files in source folder to a unified single file:"
 					wrappingWidth="407.40087890625" />
@@ -40,20 +43,23 @@
 		</Pane>
 		<Pane layoutX="12.0" layoutY="166.0" prefHeight="37.0" prefWidth="625.0">
 			<children>
-				<Button id="deleteExistingData" layoutX="558.0"
-					mnemonicParsing="false" text="Delete" />
+				<Button id="deleteExistingData" layoutX="567.0"
+					mnemonicParsing="false" onAction="#handleDeleteExistingData" text="Delete" />
 				<Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0"
 					text="Delete all existing data: (will permanently delete all existing data.)" />
 			</children>
 		</Pane>
 		<Pane layoutX="12.0" layoutY="198.0" prefHeight="37.0" prefWidth="625.0">
 			<children>
-				<Button id="convertCsvToKml" layoutX="558.0" mnemonicParsing="false"
-					text="Convert" />
+				<Button id="convertCsvToKml" layoutX="567.0" mnemonicParsing="false"
+					onAction="#handleConvertCsvToKml" text="Convert" />
 				<Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0"
 					text="Convert unified CSV file to a runnable KML file:"
 					wrappingWidth="390.99999219179153" />
 			</children>
 		</Pane>
+		<Pane layoutX="12.0" layoutY="230.0" prefHeight="37.0" prefWidth="625.0" />
+		<Button id="presentData" layoutX="567.0" layoutY="233.0"
+			mnemonicParsing="false" onAction="#handlePresentData" text="Details" />
 	</children>
 </AnchorPane>
