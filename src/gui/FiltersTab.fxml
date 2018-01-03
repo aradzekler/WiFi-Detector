@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="IOTab" minHeight="0.0" minWidth="0.0" prefHeight="484.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.IOTabController">
+	<children>
+		<Pane layoutX="12.0" layoutY="50.0" prefHeight="37.0" prefWidth="625.0">
+			<children>
+				<TextField fx:id="sourceFolderFullPath" layoutX="145.0" layoutY="6.0" prefHeight="26.0" prefWidth="100.0" />
+				<Button fx:id="sourceFolderPathSubmit" layoutX="568.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleSourceFolderPathSubmit" text="Submit" />
+				<Text layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter by Time:" />
+            <TextField layoutX="345.0" layoutY="6.0" prefHeight="25.0" prefWidth="100.0" />
+            <Label layoutX="287.0" layoutY="10.0" text="Until time:" />
+            <Label layoutX="85.0" layoutY="10.0" text="from time:" />
+			</children>
+		</Pane>
+		<Pane layoutX="12.0" layoutY="88.0" prefHeight="37.0" prefWidth="625.0">
+			<children>
+				<Text layoutX="1.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter by Location:" />
+			</children>
+		</Pane>
+		<Pane layoutX="24.0" layoutY="346.0" prefHeight="37.0" prefWidth="625.0">
+			<children>
+				<Button id="deleteExistingData" layoutX="567.0" mnemonicParsing="false" onAction="#handleDeleteExistingData" text="Save &amp; Upload" />
+				<Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Save the filtered file" />
+			</children>
+		</Pane>
+		<Button id="presentData" layoutX="592.0" layoutY="384.0" mnemonicParsing="false" onAction="#handlePresentData" prefHeight="26.0" prefWidth="92.0" text="Clear filters" />
+      <HBox layoutX="114.0" layoutY="126.0">
+         <children>
+            <Label text="Minimum Altitude :" />
+            <TextField fx:id="sourceFolderFullPath1" prefHeight="26.0" prefWidth="100.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="331.0" layoutY="126.0">
+         <children>
+            <Label text="Maximum Altitude :" />
+            <TextField fx:id="sourceFolderFullPath11" prefHeight="26.0" prefWidth="100.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="101.0" layoutY="160.0">
+         <children>
+            <Label text="Minimum Longitude :" />
+            <TextField fx:id="sourceFolderFullPath13" prefHeight="26.0" prefWidth="102.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="325.0" layoutY="160.0">
+         <children>
+            <Label text="Maximum Longitude :" />
+            <TextField fx:id="sourceFolderFullPath131" prefHeight="26.0" prefWidth="94.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="337.0" layoutY="195.0">
+         <children>
+            <Label text="Maximum Latitude :" />
+            <TextField fx:id="sourceFolderFullPath132" prefHeight="26.0" prefWidth="92.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="112.0" layoutY="195.0">
+         <children>
+            <Label text="Minimum Latitude :" />
+            <TextField fx:id="sourceFolderFullPath133" prefHeight="26.0" prefWidth="102.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="12.0" layoutY="241.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter by Device:" />
+         </children>
+      </HBox>
+				<Button id="csvFileNameSubmit" layoutX="586.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleSourceFileNameSubmit" text="Filter" />
+      <TextField fx:id="sourceFolderFullPath1331" layoutX="158.0" layoutY="243.0" prefHeight="26.0" prefWidth="102.0" promptText="Device name" />
+      <Button id="csvFileNameSubmit" layoutX="282.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleSourceFileNameSubmit" text="Filter" />
+	</children>
+</AnchorPane>
