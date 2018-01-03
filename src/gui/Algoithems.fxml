@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainController">
+   <children>
+      <Pane layoutX="28.0" layoutY="14.0" prefHeight="81.0" prefWidth="514.0">
+         <children>
+            <Text fill="#5707e1" layoutX="20.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem 1 :" />
+            <TextField layoutX="48.0" layoutY="43.0" text="Enter mac please:" />
+            <TextField layoutX="243.0" layoutY="43.0" text="Enter mac please:" />
+            <Button layoutX="423.0" layoutY="43.0" mnemonicParsing="false" text="Enter." />
+         </children>
+      </Pane>
+      <Pane layoutX="28.0" layoutY="115.0" prefHeight="81.0" prefWidth="514.0">
+         <children>
+            <Text fill="#5707e1" layoutX="20.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem  2 :" />
+            <TextField layoutX="48.0" layoutY="43.0" text="Enter mac please:" />
+            <TextField layoutX="243.0" layoutY="43.0" text="Enter mac please:" />
+            <Button layoutX="423.0" layoutY="43.0" mnemonicParsing="false" text="Enter." />
+         </children>
+      </Pane>
+   </children>
+</Pane>
