@@ -31,26 +31,42 @@ public class IOTabController implements Initializable {  // IOTab.fxml controlle
 	@FXML private Button deleteExistingData;
 	@FXML private Button convertCsvToKml;
 	@FXML private Button presentData;
+	//algo 1
 	@FXML private TextField handleInputCheckMac;
-	@FXML private Button InputMacSubmit;
-
+	@FXML private Button InputCheckMacSubmit;
+	//algo 2
+	@FXML private TextField handleInputCheckMac1;
+	@FXML private Button InputCheckMac1;
+	@FXML private Button InputCheckMac2;
+	@FXML private Button InputCheckMac3;
+	
 	private String csvPathName;
 	private String csvName;
 	private csvToKml kmlFile;
 	private csvWriter csvFile;
 
-	
+	//Algorithem 1
 	@FXML // submit mac insert
 	protected void handleInputMacSubmit(ActionEvent event) { // handles mac submit.
-	if (InputCheckMac.getText().isEmpty()) { // if empty field
+		if (InputCheckMac.getText().isEmpty()) { // if empty field
 			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
 			return;
 		}
 		setCsvPathName(InputCheckMac.getText());
 		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Mac inserted.");
 	}
-	
-	
+	//Algorithem 2
+	@FXML // submit 3 mac insert + submit signal
+	protected void handleInputCheckMac1(ActionEvent event) { // handles mac submit.
+		if (InputCheckMac1.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
+			return;
+		}
+		setCsvPathName(InputCheckMac1.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","3 Mac inserted.");
+	}
+
+
 	@FXML
 	protected void handleSourceFolderPathSubmit(ActionEvent event) { // handles path submit.
 		if (sourceFolderFullPath.getText().isEmpty()) { // if empty field
@@ -129,8 +145,8 @@ public class IOTabController implements Initializable {  // IOTab.fxml controlle
 			alert.show();
 		}
 	}
-	
-		
+
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
