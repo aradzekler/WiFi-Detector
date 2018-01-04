@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainController">
    <children>
-      <Pane layoutX="28.0" layoutY="14.0" prefHeight="81.0" prefWidth="514.0">
+      <Pane layoutX="28.0" layoutY="14.0" prefHeight="81.0" prefWidth="407.0">
          <children>
             <Text fill="#5707e1" layoutX="20.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem 1 :" />
-            <TextField layoutX="48.0" layoutY="43.0" text="Enter mac please:" />
-            <TextField layoutX="243.0" layoutY="43.0" text="Enter mac please:" />
-            <Button layoutX="423.0" layoutY="43.0" mnemonicParsing="false" text="Enter." />
+            <HBox layoutX="20.0" layoutY="43.0">
+               <children>
+                  <Label text="InputMac : " />
+                  <TextField fx:id="mac" onAction="#onSUBMIT" text="Enter mac please:" />
+               </children>
+            </HBox>
+            <Button layoutX="304.0" layoutY="43.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
          </children>
       </Pane>
-      <Pane layoutX="28.0" layoutY="115.0" prefHeight="81.0" prefWidth="514.0">
+      <Pane layoutX="28.0" layoutY="187.0" prefHeight="81.0" prefWidth="514.0">
          <children>
             <Text fill="#5707e1" layoutX="20.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem  2 :" />
-            <TextField layoutX="48.0" layoutY="43.0" text="Enter mac please:" />
-            <TextField layoutX="243.0" layoutY="43.0" text="Enter mac please:" />
-            <Button layoutX="423.0" layoutY="43.0" mnemonicParsing="false" text="Enter." />
+            <TextField fx:id="t_name" layoutX="48.0" layoutY="43.0" text="Enter mac please:" />
+            <TextField fx:id="t_name" layoutX="243.0" layoutY="43.0" text="Enter mac please:" />
+            <Button layoutX="423.0" layoutY="43.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
          </children>
       </Pane>
+      <HBox layoutX="35.0" layoutY="110.0">
+         <children>
+            <Label text="Lat : " />
+            <TextField fx:id="mac3" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="192.0" layoutY="110.0">
+         <children>
+            <Label text="Lon : " />
+            <TextField fx:id="mac31" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="363.0" layoutY="110.0">
+         <children>
+            <Label text="Alt : " />
+            <TextField fx:id="mac32" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
+         </children>
+      </HBox>
    </children>
 </Pane>
