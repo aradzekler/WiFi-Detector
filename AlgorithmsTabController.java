@@ -18,7 +18,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class AlgoithemsTabControler {
+public class AlgorithmsTabController {
 
 	//algo 1
 		@FXML private TextField handleInputCheckMac;
