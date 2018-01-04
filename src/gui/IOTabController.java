@@ -31,12 +31,26 @@ public class IOTabController implements Initializable {  // IOTab.fxml controlle
 	@FXML private Button deleteExistingData;
 	@FXML private Button convertCsvToKml;
 	@FXML private Button presentData;
+	@FXML private TextField handleInputCheckMac;
+	@FXML private Button InputMacSubmit;
 
 	private String csvPathName;
 	private String csvName;
 	private csvToKml kmlFile;
 	private csvWriter csvFile;
 
+	
+	@FXML // submit mac insert
+	protected void handleInputMacSubmit(ActionEvent event) { // handles mac submit.
+	if (InputCheckMac.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
+			return;
+		}
+		setCsvPathName(InputCheckMac.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Mac inserted.");
+	}
+	
+	
 	@FXML
 	protected void handleSourceFolderPathSubmit(ActionEvent event) { // handles path submit.
 		if (sourceFolderFullPath.getText().isEmpty()) { // if empty field
@@ -115,7 +129,8 @@ public class IOTabController implements Initializable {  // IOTab.fxml controlle
 			alert.show();
 		}
 	}
-
+	
+		
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
