@@ -35,7 +35,10 @@ public class IOTabController implements Initializable {  // IOTab.fxml controlle
 	@FXML private TextField handleInputCheckMac;
 	@FXML private Button InputCheckMacSubmit;
 	//algo 2
-	@FXML private TextField handleInputCheckMac1;
+	@FXML private TextField InputCheckMac1;
+	@FXML private TextField InputCheckMac2;
+	@FXML private TextField InputCheckMac3;
+	@FXML private TextField InputSignal;
 	@FXML private Button InputCheckMac1;
 	@FXML private Button InputCheckMac2;
 	@FXML private Button InputCheckMac3;
@@ -56,15 +59,44 @@ public class IOTabController implements Initializable {  // IOTab.fxml controlle
 		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Mac inserted.");
 	}
 	//Algorithem 2
-	@FXML // submit 3 mac insert + submit signal
+	@FXML // submit 1 mac insert 
 	protected void handleInputCheckMac1(ActionEvent event) { // handles mac submit.
 		if (InputCheckMac1.getText().isEmpty()) { // if empty field
 			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
 			return;
 		}
 		setCsvPathName(InputCheckMac1.getText());
-		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","3 Mac inserted.");
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","First Mac inserted.");
 	}
+	@FXML // submit 2 mac insert 
+	protected void handleInputCheckMac2(ActionEvent event) { // handles mac submit.
+		if (InputCheckMac2.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
+			return;
+		}
+		setCsvPathName(InputCheckMac2.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Second Mac inserted.");
+	}
+	@FXML // submit 3 mac insert 
+	protected void handleInputCheckMac3(ActionEvent event) { // handles mac submit.
+		if (InputCheckMac3.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
+			return;
+		}
+		setCsvPathName(InputCheckMac3.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Third Mac inserted.");
+	}
+	@FXML // submit signal
+	protected void handleInputSignal(ActionEvent event) { // handles mac submit.
+		if (InputSignal.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
+			return;
+		}
+		setCsvPathName(InputSignal.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS"," Signal inserted.");
+	}
+	
+
 
 
 	@FXML
