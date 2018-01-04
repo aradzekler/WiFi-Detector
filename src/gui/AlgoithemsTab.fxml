@@ -9,43 +9,51 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainController">
    <children>
-      <Pane layoutX="28.0" layoutY="14.0" prefHeight="81.0" prefWidth="407.0">
+      <Pane layoutX="28.0" layoutY="14.0" prefHeight="162.0" prefWidth="495.0">
          <children>
-            <Text fill="#5707e1" layoutX="20.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem 1 :" />
             <HBox layoutX="20.0" layoutY="43.0">
                <children>
                   <Label text="InputMac : " />
                   <TextField fx:id="mac" onAction="#onSUBMIT" text="Enter mac please:" />
                </children>
             </HBox>
-            <Button layoutX="304.0" layoutY="43.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
+            <Button layoutX="258.0" layoutY="43.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
+            <Text fill="#5707e1" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem 1 :" />
+            <HBox layoutX="357.0" layoutY="123.0">
+               <children>
+                  <Label text="Alt : " />
+                  <TextField fx:id="mac32" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
+               </children>
+            </HBox>
+            <HBox layoutX="18.0" layoutY="123.0">
+               <children>
+                  <Label text="Lat :  " />
+                  <TextField fx:id="mac321" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
+               </children>
+            </HBox>
+            <HBox layoutX="201.0" layoutY="123.0">
+               <children>
+                  <Label text="Lon : " />
+                  <TextField fx:id="mac322" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
+               </children>
+            </HBox>
          </children>
       </Pane>
-      <Pane layoutX="28.0" layoutY="187.0" prefHeight="81.0" prefWidth="514.0">
+      <Pane layoutX="28.0" layoutY="187.0" prefHeight="178.0" prefWidth="527.0">
          <children>
-            <Text fill="#5707e1" layoutX="20.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem  2 :" />
-            <TextField fx:id="t_name" layoutX="48.0" layoutY="43.0" text="Enter mac please:" />
-            <TextField fx:id="t_name" layoutX="243.0" layoutY="43.0" text="Enter mac please:" />
-            <Button layoutX="423.0" layoutY="43.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
+            <Text fill="#5707e1" layoutX="8.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem  2 :" />
+            <HBox layoutX="-27.0" layoutY="43.0" />
+            <Button layoutX="278.0" layoutY="41.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
+            <HBox layoutX="13.0" layoutY="41.0" prefHeight="25.0" prefWidth="265.0">
+               <children>
+                  <Label text="Enter Strng please : " />
+                  <TextField fx:id="t_name" text="Enter mac please:" />
+               </children>
+            </HBox>
+            <TextField fx:id="t_name" layoutX="332.0" layoutY="112.0" text="Enter mac please:" />
          </children>
       </Pane>
-      <HBox layoutX="35.0" layoutY="110.0">
-         <children>
-            <Label text="Lat : " />
-            <TextField fx:id="mac3" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
-         </children>
-      </HBox>
-      <HBox layoutX="192.0" layoutY="110.0">
-         <children>
-            <Label text="Lon : " />
-            <TextField fx:id="mac31" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
-         </children>
-      </HBox>
-      <HBox layoutX="363.0" layoutY="110.0">
-         <children>
-            <Label text="Alt : " />
-            <TextField fx:id="mac32" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
-         </children>
-      </HBox>
+      <HBox layoutX="35.0" layoutY="110.0" />
+      <HBox layoutX="192.0" layoutY="110.0" />
    </children>
 </Pane>
