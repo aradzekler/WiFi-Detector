@@ -19,8 +19,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class AlgorithmsTabController {
+	@FXML private MainController Main;
+	// variables from fxml file to insert.
 	@FXML private Pane AlgorithemTab;
-
 	//algo 1
 	@FXML private TextField MacBox;
 	@FXML private Button InputCheckMacSubmit;
@@ -31,6 +32,7 @@ public class AlgorithmsTabController {
 	@FXML private TextField MacBox1;
 	@FXML private TextField MacBox2;
 	@FXML private TextField MacBox3;
+	@FXML private TextField pSignal;
 	@FXML private Button InputCheckMac3Submit;
 
 	
@@ -39,6 +41,7 @@ public class AlgorithmsTabController {
 	private String Mac1Source;
 	private String Mac2Source;
 	private String Mac3Source;
+	private String Signal;
 	
 	//Algorithem 1
 	@FXML // submit mac insert
@@ -62,35 +65,18 @@ public class AlgorithmsTabController {
 		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","String inserted.");
 	}
 
-	@FXML // submit 1 mac insert 
+	@FXML // submit 3 Macs +Signal insert 
 	protected void handleInputCheckMac1Submit(ActionEvent event) { // handles mac submit.
-		if (MacBox1.getText().isEmpty()) { // if empty field
+		if (MacBox1.getText().isEmpty()||MacBox2.getText().isEmpty()||MacBox3.getText().isEmpty()||pSignal.getText().isEmpty()) { // if empty field
 			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
 			return;
 		}
 		 setMac1Source(MacBox1.getText());
-		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","First Mac inserted.");
+		 setMac2Source(MacBox2.getText());
+		 setMac3Source(MacBox3.getText());
+		 setMac3Source(Signal.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Data inserted.");
 	}
-	@FXML // submit 2 mac insert 
-	protected void handleInputCheckMac2Submit(ActionEvent event) { // handles mac submit.
-		if (MacBox2.getText().isEmpty()) { // if empty field
-			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
-			return;
-		}
-		setMac2Source(MacBox2.getText());
-		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Second Mac inserted.");
-	}
-	@FXML // submit 3 mac insert 
-	protected void handleInputCheckMac3Submit(ActionEvent event) { // handles mac submit.
-		if (MacBox3.getText().isEmpty()) { // if empty field
-			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
-			return;
-		}
-		setMac3Source(MacBox3.getText());
-		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Second Mac inserted.");
-		
-	}
-
 	// class for creating alerts.
 		private static class AlertHelper {
 			public static void showAlert(Alert.AlertType alertType, String title, String message) {
@@ -131,14 +117,12 @@ public class AlgorithmsTabController {
 		public void setMac3Source(String Mac3Source) {
 			this.Mac3Source = Mac3Source;
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		public String getSignal() {
+			return Mac1Source;
+		}
+		public void setSignal(String Signal) {
+			this.Signal = Signal;
+		}
+			
 		
 }
