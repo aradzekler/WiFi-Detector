@@ -21,78 +21,73 @@ import javafx.scene.layout.AnchorPane;
 public class AlgorithmsTabController {
 
 	//algo 1
-		@FXML private AnchorPane FiltersTab;
-                @FXML private CheckBox TimeEnable;
-	        @FXML private TextField MacBox;
+	@FXML private TextField MacBox;
+	@FXML private Button InputCheckMacSubmit;
 	//algo2
-               @FXML private TextField InputCheckString; 
-	       @FXML private TextField MacBox1;
-	        @FXML private TextField MacBox2;
-	        @FXML private TextField MacBox3;
+	@FXML private TextField InputCheckString; 
+	@FXML private Button InputCheckStringSubmit;
+
+	@FXML private TextField MacBox1;
+	@FXML private TextField MacBox2;
+	@FXML private TextField MacBox3;
+	@FXML private Button InputCheckMac3Submit;
+
 	
-                @FXML private CheckBox LocationEnable
-		
-		@FXML private Button InputCheckStringSubmit;
-		
+	private String MacSource;
+	private String StringSource;
+	private String Mac1Source;
+	private String Mac2Source;
+	private String Mac3Source;
 	
-		//Algorithem 1
-		@FXML // submit mac insert
-		protected void handleInputCheckStringSubmit(ActionEvent event) { // handles mac submit.
-			if (InputCheckString.getText().isEmpty()) { // if empty field
-				AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
-				return;
-			}
-			(InputCheckString.getText());
-			AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Mac inserted.");
+	//Algorithem 1
+	@FXML // submit mac insert
+	protected void handleCheckMacSubmit(ActionEvent event) { // handles mac submit.
+		if (MacBox.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
+			return;
 		}
-		//Algorithem 2
-		@FXML // submit 1 mac insert 
-		protected void handleInputCheckMac1Submit(ActionEvent event) { // handles mac submit.
-			if (InputCheckMac1.getText().isEmpty()) { // if empty field
-				AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
-				return;
-			}
-			setCsvPathName(InputCheckMac1.getText());
-			AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","First Mac inserted.");
-		}
-		
-		@FXML // submit 1 mac insert 
-		protected void handleInputCheckMac1Submit(ActionEvent event) { // handles mac submit.
-			if (InputCheckMac1.getText().isEmpty()) { // if empty field
-				AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
-				return;
-			}
-			setCsvPathName(InputCheckMac1.getText());
-			AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","First Mac inserted.");
-		}
-		@FXML // submit 2 mac insert 
-		protected void handleInputCheckMac2Submit(ActionEvent event) { // handles mac submit.
-			if (InputCheckMac2.getText().isEmpty()) { // if empty field
-				AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
-				return;
-			}
-			setCsvPathName(InputCheckMac2.getText());
-			AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Second Mac inserted.");
-		}
-		@FXML // submit 3 mac insert 
-		protected void handleInputCheckMac3Submit(ActionEvent event) { // handles mac submit.
-			if (InputCheckMac3.getText().isEmpty()) { // if empty field
-				AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
-				return;
-			}
-			setCsvPathName(InputCheckMac3.getText());
-			AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Third Mac inserted.");
-		}
-		@FXML // submit signal
-		protected void handleInputCheckSignalSubmit(ActionEvent event) { // handles mac submit.
-			if (InputSignal.getText().isEmpty()) { // if empty field
-				AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
-				return;
-			}
-			setCsvPathName(InputSignal.getText());
-			AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS"," Signal inserted.");
-		}
-		
+		setMacSource(MacBox.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Mac inserted.");
+	}
 	
-	
+	//Algorithem 2
+	@FXML // submit String  insert 
+	protected void handleCheckStringSubmit(ActionEvent event) { // handles mac submit.
+		if (InputCheckString.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter String.");
+			return;
+		}
+		setStringSource(InputCheckString.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","String inserted.");
+	}
+
+	@FXML // submit 1 mac insert 
+	protected void handleInputCheckMac1Submit(ActionEvent event) { // handles mac submit.
+		if (MacBox1.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
+			return;
+		}
+		 setMac1Source(MacBox1.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","First Mac inserted.");
+	}
+	@FXML // submit 2 mac insert 
+	protected void handleInputCheckMac2Submit(ActionEvent event) { // handles mac submit.
+		if (MacBox2.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
+			return;
+		}
+		setMac2Source(MacBox2.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Second Mac inserted.");
+	}
+	@FXML // submit 3 mac insert 
+	protected void handleInputCheckMac3Submit(ActionEvent event) { // handles mac submit.
+		if (MacBox3.getText().isEmpty()) { // if empty field
+			AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
+			return;
+		}
+		setMac3Source(MacBox3.getText());
+		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Second Mac inserted.");
+		
+	}
+
 }
