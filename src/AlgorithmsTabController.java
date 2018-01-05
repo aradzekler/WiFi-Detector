@@ -21,19 +21,18 @@ import javafx.scene.layout.AnchorPane;
 public class AlgorithmsTabController {
 
 	//algo 1
-		@FXML private TextField handleInputCheckMac;
-		@FXML private Button InputCheckMacSubmit;
-		//algo 2
-		@FXML private TextField InputCheckString;
+		@FXML private AnchorPane FiltersTab;
+                @FXML private CheckBox TimeEnable;
+	        @FXML private TextField MacBox;
+	//algo2
+               @FXML private TextField InputCheckString; 
+	       @FXML private TextField MacBox1;
+	        @FXML private TextField MacBox2;
+	        @FXML private TextField MacBox3;
+	
+                @FXML private CheckBox LocationEnable
+		
 		@FXML private Button InputCheckStringSubmit;
-		@FXML private TextField InputCheckMac1;
-		@FXML private Button InputCheckMac1Submit;
-		@FXML private TextField InputCheckMac2;
-		@FXML private Button InputCheckMac2Submit;
-		@FXML private TextField InputCheckMac3;
-		@FXML private Button InputCheckMac3Submit;
-		@FXML private TextField InputSignal;
-		@FXML private Button InputCheckSignalSubmit;
 		
 	
 		//Algorithem 1
@@ -43,7 +42,7 @@ public class AlgorithmsTabController {
 				AlertHelper.showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter Mac.");
 				return;
 			}
-			setCsvPathName(InputCheckString.getText());
+			(InputCheckString.getText());
 			AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Mac inserted.");
 		}
 		//Algorithem 2
