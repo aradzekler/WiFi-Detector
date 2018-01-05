@@ -80,6 +80,7 @@
                   </HBox>
                </children>
             </Group>
+            <Button layoutX="264.0" layoutY="127.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
          </children>
       </Pane>
       <HBox layoutX="35.0" layoutY="110.0" />
