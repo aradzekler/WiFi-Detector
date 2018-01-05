@@ -1,4 +1,4 @@
-package ui;
+package Gui;
 
 import utils.csvWriter;
 
@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class AlgorithmsTabController {
+	@FXML private Pane AlgorithemTab;
 
 	//algo 1
 	@FXML private TextField MacBox;
@@ -90,4 +91,54 @@ public class AlgorithmsTabController {
 		
 	}
 
+	// class for creating alerts.
+		private static class AlertHelper {
+			public static void showAlert(Alert.AlertType alertType, String title, String message) {
+				Alert alert = new Alert(alertType);
+				alert.setTitle(title);
+				alert.setHeaderText(null);
+				alert.setContentText(message);
+				alert.show();
+			}
+		}
+		public String getMacSource() {
+			return MacSource;
+		}
+		public void setMacSource(String MacSource) {
+			this.MacSource = MacSource;
+		}
+		public String getStringSource() {
+			return StringSource;
+		}
+		public void setStringSource(String StringSource) {
+			this.StringSource = StringSource;
+		}
+		public String getMac1Source() {
+			return Mac1Source;
+		}
+		public void setMac1Source(String Mac1Source) {
+			this.Mac1Source = Mac1Source;
+		}
+		public String getMac2Source() {
+			return Mac1Source;
+		}
+		public void setMac2Source(String Mac2Source) {
+			this.Mac2Source = Mac2Source;
+		}
+		public String getMac3Source() {
+			return Mac1Source;
+		}
+		public void setMac3Source(String Mac3Source) {
+			this.Mac3Source = Mac3Source;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }
