@@ -14,8 +14,9 @@ public class MainController { // main.fxml controller.
 		System.out.println("Application started");
 		IOTabController.initialize(null, null);
 	}
-	
+	//Algorithems Application
 	@FXML private AlgorithmsTabController AlgorithmsTabController;
+	
 	@FXML public void initialize() {
 		System.out.println("Application started");
 		AlgorithmsTabController.initialize(null, null);
