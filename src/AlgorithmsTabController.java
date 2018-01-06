@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import utils.csvWriter;
 
@@ -53,7 +53,6 @@ public class AlgorithmsTabController {
 		setMacSource(MacBox.getText());
 		AlertHelper.showAlert(Alert.AlertType.INFORMATION, "SUCCESS","Mac inserted.");
 	}
-	
 	//Algorithem 2
 	@FXML // submit String  insert 
 	protected void handleCheckStringSubmit(ActionEvent event) { // handles mac submit.
