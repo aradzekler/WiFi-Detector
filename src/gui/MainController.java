@@ -18,7 +18,7 @@ public class MainController { // main.fxml controller.
 	@FXML private AlgorithmsTabController AlgorithmsTabController;
 	
 	@FXML public void initialize() {
-		System.out.println("Application started");
+		System.out.println("Algorithems Application started");
 		AlgorithmsTabController.initialize(null, null);
 	}
 }
