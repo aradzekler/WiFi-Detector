@@ -9,17 +9,11 @@ import javafx.scene.layout.VBox;
 public class MainController { // main.fxml controller.
 
 	@FXML private IOTabController IOTabController;
+	@FXML private AlgorithmsTabController AlgorithmsTabController;
 
 	@FXML public void initialize() {
 		System.out.println("Application started");
 		IOTabController.initialize(null, null);
-	}
-	//Algorithems Application
-	@FXML private AlgorithmsTabController AlgorithmsTabController;
-	
-	@FXML public void initialize() {
-		System.out.println("Algorithems Application started");
-		AlgorithmsTabController.initialize(null, null);
 	}
 }
 
