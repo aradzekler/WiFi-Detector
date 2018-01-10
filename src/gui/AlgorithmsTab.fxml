@@ -18,24 +18,24 @@
                   <TextField fx:id="mac" onAction="#onSUBMIT" text="Enter mac please:" />
                </children>
             </HBox>
-            <Button layoutX="258.0" layoutY="43.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
+            <Button fx:id="InputCheckMacSubmit" layoutX="258.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleCheckMacSubmit" text="Enter." />
             <Text fill="#5707e1" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem 1 :" />
             <HBox layoutX="356.0" layoutY="89.0">
                <children>
                   <Label text="Alt : " />
-                  <TextField fx:id="mac_alt" prefHeight="25.0" prefWidth="90.0" />
+                  <TextField fx:id="mac32" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
                </children>
             </HBox>
             <HBox layoutX="74.0" layoutY="89.0">
                <children>
                   <Label text="Lat :  " />
-                  <TextField fx:id="mac_lat" prefHeight="25.0" prefWidth="90.0" />
+                  <TextField fx:id="mac321" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
                </children>
             </HBox>
             <HBox layoutX="221.0" layoutY="89.0">
                <children>
                   <Label text="Lon : " />
-                  <TextField fx:id="mac_lon" prefHeight="25.0" prefWidth="90.0" />
+                  <TextField fx:id="mac322" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
                </children>
             </HBox>
             <Label layoutX="14.0" layoutY="84.0" prefHeight="17.0" prefWidth="70.0" text="Data :" />
@@ -45,7 +45,7 @@
          <children>
             <Text fill="#5707e1" layoutX="8.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithem  2 :" />
             <HBox layoutX="-27.0" layoutY="43.0" />
-            <Button layoutX="278.0" layoutY="41.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
+            <Button fx:id="InputCheckStringSubmit" layoutX="278.0" layoutY="41.0" mnemonicParsing="false" onAction="#handleCheckStringSubmit" text="Enter." />
             <HBox layoutX="13.0" layoutY="41.0" prefHeight="25.0" prefWidth="265.0">
                <children>
                   <Label text="Enter Strng please : " />
@@ -80,7 +80,7 @@
                   </HBox>
                </children>
             </Group>
-            <Button layoutX="264.0" layoutY="127.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Enter." />
+            <Button fx:id="InputCheckMac3Submit" layoutX="264.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleInputCheckMac1Submit" text="Enter." />
          </children>
       </Pane>
       <HBox layoutX="35.0" layoutY="110.0" />
