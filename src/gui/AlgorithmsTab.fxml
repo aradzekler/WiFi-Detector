@@ -15,7 +15,7 @@
             <HBox layoutX="20.0" layoutY="43.0">
                <children>
                   <Label text="InputMac : " />
-                  <TextField fx:id="mac" onAction="#onSUBMIT" text="Enter mac please:" />
+                  <TextField fx:id="MacBox" text="Enter mac please:" />
                </children>
             </HBox>
             <Button fx:id="InputCheckMacSubmit" layoutX="258.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleCheckMacSubmit" text="Enter." />
@@ -23,19 +23,19 @@
             <HBox layoutX="356.0" layoutY="89.0">
                <children>
                   <Label text="Alt : " />
-                  <TextField fx:id="mac32" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
+                  <TextField fx:id="AltBox" prefHeight="25.0" prefWidth="90.0" />
                </children>
             </HBox>
             <HBox layoutX="74.0" layoutY="89.0">
                <children>
                   <Label text="Lat :  " />
-                  <TextField fx:id="mac321" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
+                  <TextField fx:id="LatBox" prefHeight="25.0" prefWidth="90.0" />
                </children>
             </HBox>
             <HBox layoutX="221.0" layoutY="89.0">
                <children>
                   <Label text="Lon : " />
-                  <TextField fx:id="mac322" onAction="#onSUBMIT" prefHeight="25.0" prefWidth="90.0" />
+                  <TextField fx:id="LonBox" prefHeight="25.0" prefWidth="90.0" />
                </children>
             </HBox>
             <Label layoutX="14.0" layoutY="84.0" prefHeight="17.0" prefWidth="70.0" text="Data :" />
@@ -49,13 +49,13 @@
             <HBox layoutX="13.0" layoutY="41.0" prefHeight="25.0" prefWidth="265.0">
                <children>
                   <Label text="Enter Strng please : " />
-                  <TextField fx:id="t_name" text="Enter mac please:" />
+                  <TextField fx:id="InputCheckString" text="Enter mac please:" />
                </children>
             </HBox>
             <HBox layoutX="255.0" layoutY="89.0">
                <children>
                   <Label text="Enter Signal please : " />
-                  <TextField fx:id="t_name" />
+                  <TextField fx:id="pSignal" />
                </children>
             </HBox>
             <Group layoutX="23.0" layoutY="89.0">
@@ -63,19 +63,19 @@
                   <HBox>
                      <children>
                         <Label text="InputMac 1 : " />
-                        <TextField fx:id="mac1" onAction="#onSUBMIT" text="Enter mac 1 please:" />
+                        <TextField fx:id="MacBox1" text="Enter mac 1 please:" />
                      </children>
                   </HBox>
                   <HBox layoutY="23.0">
                      <children>
                         <Label text="InputMac 2 : " />
-                        <TextField fx:id="mac11" onAction="#onSUBMIT" text="Enter mac 2 please:" />
+                        <TextField fx:id="MacBox2" text="Enter mac 2 please:" />
                      </children>
                   </HBox>
                   <HBox layoutY="50.0">
                      <children>
                         <Label text="InputMac 3 : " />
-                        <TextField fx:id="mac12" onAction="#onSUBMIT" text="Enter mac 3 please:" />
+                        <TextField fx:id="MacBox3" text="Enter mac 3 please:" />
                      </children>
                   </HBox>
                </children>
