@@ -1,10 +1,12 @@
 package db;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -20,9 +22,10 @@ public class db {
 	public static void main(String[] args) throws IOException {
 		db DB = new db("/home/arad/eclipse-workspace/OOP1/src/db/storage.db","/home/arad/eclipse-workspace/OOP1/testfolder1/csvfile.csv");
 		db.createNewTableFromCsv();
+		db.updateCsvFromDB();
 	}
 
-
+	// creates a new db from a csv file.
 	public static void createNewTableFromCsv() {
 		String line = "";
 		String cvsSplitBy = ",";
@@ -63,12 +66,102 @@ public class db {
 				stmt.execute(s);
 				System.out.println("SUCCESS");
 			}
+			br.close();
 		}
 		catch (SQLException | IOException e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	// helper function to dynamically state how much columns to add.
+
+	/** insert new information from different csv to db.
+	 * @param csvPath csv file full path.
+	 */
+	public static void insertFromCsv(String csvPath) {
+		String line = "";
+		String cvsSplitBy = ",";
+		BufferedReader br = null;
+
+		String url = "jdbc:sqlite:" + dbSourceFolder;
+		try (Connection conn = DriverManager.getConnection(url);
+				Statement stmt = conn.createStatement()) {
+			br = new BufferedReader(new FileReader(csvPath));
+			br.readLine(); 
+			br.readLine();// reading 2 lines to avoid headers.
+			while ((line = br.readLine()) != null) {
+				String[] table = line.split(cvsSplitBy);
+				String s ="INSERT INTO storage (" + valuesToString(table.length) + ") VALUES ("; // SQL statement to insert rows.
+				for (int i = 0; i < table.length; i++) {
+					s += "'"+table[i]+"'" + ",";
+				}
+				s = s.substring(0, s.length() - 1);
+				s+=");";
+				stmt.execute(s);
+				System.out.println("SUCCESS");
+			}
+			br.close();
+		}
+		catch (SQLException | IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	/**insert to existing table from another table (in same folder).
+	 * @param tableName table's name..
+	 */
+	public static void insertFromTable(String tableName) {
+		String url = "jdbc:sqlite:" + dbSourceFolder;
+		String s = "INSERT INTO storage SELECT * FROM " + tableName + ";"; // SQL statement to insert rows.
+
+		try (Connection conn = DriverManager.getConnection(url);
+				Statement stmt = conn.createStatement()) {
+			stmt.execute(s);
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void updateCsvFromDB() {
+		String line = "";
+		String cvsSplitBy = ",";
+		BufferedReader br = null;
+		String url = "jdbc:sqlite:" + dbSourceFolder;
+		int csvCounter = 0, sqlCounter = 1;
+
+		try {
+			br = new BufferedReader(new FileReader(csvDestinationFile));
+			br.readLine(); 
+			br.readLine();
+			br.readLine();// reading 2 lines to avoid headers.
+			while ((line = br.readLine()) != null) {
+				csvCounter++;
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		try (Connection conn = DriverManager.getConnection(url);
+				Statement stmt = conn.createStatement()) {
+			ResultSet rs3 = stmt.executeQuery("SELECT COUNT(*) AS total FROM storage");
+			while(rs3.next()) {
+				sqlCounter = rs3.getInt("total");
+			}
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		if (csvCounter != sqlCounter) {
+			//  WRITE LOGIC HERE
+		}
+		System.out.println(csvCounter + "***" + sqlCounter);
+	}
+
+
+	/** helper function to dynamically state how much columns to add.
+	 * @param length number of columns in row in the csv file.
+	 */
 	private static String valuesToString(int length) {
 		String str = "Time, ID, Lat, Lon, Alt,";
 		int count = 5;
@@ -82,8 +175,12 @@ public class db {
 			str+=", Signal"+i+",";
 			count++;
 		}
-
 		str = str.substring(0, str.length() - 1);
 		return str;
 	}
 }
+
+
+
+
+
