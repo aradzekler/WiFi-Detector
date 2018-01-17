@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 archivesBaseName = 'someJar'
-version = '1.0-SNAPSHOT' 
+version = '1.0' 
 
 repositories {
     mavenCentral()
@@ -9,18 +9,35 @@ repositories {
 
 dependencies {
    compile  'log4j:log4j:1.2.16'
-   compile fileTree(dir: 'javaapiforkml-master', includes: ['*.jar'])
+   compile files('sqlite-jdbc-3.21.0.jar', 'opencsv-4.1.jar', 'jsr173_api-1.0.jar',
+   'jfxrt.jar', 'jaxb-impl-2.1.17.jar', 'JavaAPIforKml-2.2.0.jar', 'commons-lang3-3.7.jar')
+   //compile fileTree(dir: 'javaapiforkml-master', includes: ['*.jar'])
 } 
 
-task buildJar(type: Jar) {
+task fatJar(type: Jar) {
 	manifest {
-        attributes 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-        	'Implementation-Title': 'Gradle Jar File',
-        	'Implementation-Version': '1.0',
-        	'Main-Class': 'ui.MainGUI' ,
-        	manifest.attributes("Main-Class": 'ui.MainGUI')
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+        	'Implementation-Version': version,
+        	'Main-Class': 'ui.MainGUI'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+}
+
+task myZip(type: Zip) {
+        myZip {
+            from 'home/eclipse-workspace/OOP1'   // change according to path.
+            include '*.*'
+            destinationDir new File('home/eclipse-workspace/OOP1')
+            archiveName "oop1"
+          }
+    }
+
+task javadocJar(type: Jar, dependsOn: 'javadoc') {
+    from "build/docs/javadoc"
+    classifier "javadoc"
+}
+artifacts {
+    archives javadocJar
 }
