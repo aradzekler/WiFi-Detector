@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+archivesBaseName = 'someJar'
+version = '1.0-SNAPSHOT' 
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+   compile  'log4j:log4j:1.2.16'
+   compile fileTree(dir: 'javaapiforkml-master', includes: ['*.jar'])
+} 
+
+task buildJar(type: Jar) {
+	manifest {
+        attributes 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+        	'Implementation-Title': 'Gradle Jar File',
+        	'Implementation-Version': '1.0',
+        	'Main-Class': 'ui.MainGUI' ,
+        	manifest.attributes("Main-Class": 'ui.MainGUI')
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
