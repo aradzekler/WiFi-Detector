@@ -14,6 +14,13 @@ public class db {
 	private static String dbSourceFolder = "";
 	private static String csvDestinationFile = "";
 
+	public static String _ip = "10.0.0.138";
+	public static String _port = "3306";
+	public static String _urld = "oop_course_ariel";
+	public static String _url = "jdbc:mysql://"+_ip+":"+ _port+"/"+_urld;
+	public static String _user = "oop1";
+	public static String _password = "Lambda1();";
+
 	public db(String dbSourceFolder, String csvDestinationFile) {
 		db.dbSourceFolder = dbSourceFolder;
 		db.csvDestinationFile = csvDestinationFile;
@@ -32,7 +39,7 @@ public class db {
 		BufferedReader br = null;
 
 		// SQLite connection string
-		String url = "jdbc:sqlite:" + dbSourceFolder;
+		//String url = "jdbc:sqlite:" + dbSourceFolder;
 
 		// SQL statement for creating a new table
 		String sql = "CREATE TABLE IF NOT EXISTS storage ("
@@ -49,7 +56,7 @@ public class db {
 				+ " SSID10 text, MAC10 text, Frequncy10 text, Signal10 text"
 				+ ");";
 
-		try (Connection conn = DriverManager.getConnection(url);
+		try (Connection conn = DriverManager.getConnection(_url, _user, _password);
 				Statement stmt = conn.createStatement()) {
 			stmt.execute(sql);
 			br = new BufferedReader(new FileReader(csvDestinationFile));
@@ -81,8 +88,7 @@ public class db {
 		String cvsSplitBy = ",";
 		BufferedReader br = null;
 
-		String url = "jdbc:sqlite:" + dbSourceFolder;
-		try (Connection conn = DriverManager.getConnection(url);
+		try (Connection conn = DriverManager.getConnection(_url, _user, _password);
 				Statement stmt = conn.createStatement()) {
 			br = new BufferedReader(new FileReader(csvPath));
 			br.readLine(); 
@@ -109,10 +115,9 @@ public class db {
 	 * @param tableName table's name..
 	 */
 	public static void insertFromTable(String tableName) {
-		String url = "jdbc:sqlite:" + dbSourceFolder;
 		String s = "INSERT INTO storage SELECT * FROM " + tableName + ";"; // SQL statement to insert rows.
 
-		try (Connection conn = DriverManager.getConnection(url);
+		try (Connection conn = DriverManager.getConnection(_url, _user, _password);
 				Statement stmt = conn.createStatement()) {
 			stmt.execute(s);
 		}
@@ -125,7 +130,6 @@ public class db {
 		String line = "";
 		String cvsSplitBy = ",";
 		BufferedReader br = null;
-		String url = "jdbc:sqlite:" + dbSourceFolder;
 		int csvCounter = 0, sqlCounter = 1;
 
 		try {
@@ -141,7 +145,7 @@ public class db {
 			e.printStackTrace();
 		}
 
-		try (Connection conn = DriverManager.getConnection(url);
+		try (Connection conn = DriverManager.getConnection(_url, _user, _password);
 				Statement stmt = conn.createStatement()) {
 			ResultSet rs3 = stmt.executeQuery("SELECT COUNT(*) AS total FROM storage");
 			while(rs3.next()) {
@@ -179,8 +183,3 @@ public class db {
 		return str;
 	}
 }
-
-
-
-
-
